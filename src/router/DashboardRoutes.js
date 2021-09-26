@@ -27,6 +27,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SchoolIcon from '@material-ui/icons/School';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TodayIcon from '@material-ui/icons/Today';
 import { HorarioPage } from '../pages/HorarioPage';
 import { Button } from '@material-ui/core';
@@ -34,6 +35,7 @@ import { useDispatch } from 'react-redux';
 import { dispatchLogout } from '../controllers/auth';
 import { AsignaturaPage } from '../pages/AsignaturaPage';
 import { PruebaPage } from '../pages/PruebaPage';
+import { TareasPage } from '../pages/TareasPage';
 
 const drawerWidth = 200;
 
@@ -185,6 +187,7 @@ export const DashBoardRoutes = (props) => {
         <Switch>
                 <Route exact path="/"  component={DashboardPage}/>
                 <Route path="/asignaturas"  component={AsignaturasPage}/>
+                <Route path="/tareas/:idTarea"  component={TareasPage}/>
                 <Route path="/notas"  component={NotasPage}/>
                 <Route path="/horario"  component={HorarioPage}/>
                 <Route path="/asignatura/:idAsignatura"  component={AsignaturaPage}/>
