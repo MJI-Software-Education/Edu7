@@ -6,7 +6,7 @@ import '../index.css';
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const [form, onChange] = useForm({
-        email:'miguel@albanez.com',
+        email:'miguel@albanezz.com',
         password:'123456'
     });
     const {email, password} = form;

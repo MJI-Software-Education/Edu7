@@ -14,7 +14,6 @@ import { NotasPage } from '../pages/NotasPage';
 
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -33,7 +32,10 @@ import { HorarioPage } from '../pages/HorarioPage';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { dispatchLogout } from '../controllers/auth';
-const drawerWidth = 240;
+import { AsignaturaPage } from '../pages/AsignaturaPage';
+import { PruebaPage } from '../pages/PruebaPage';
+
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor:'#FAFAFA',
+    backgroundColor:'#F5F7FB',
     color:'black'
 
   },
@@ -65,12 +67,13 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor:'#121138',
+    backgroundColor:'#4D4AA0',
     color:'white'
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    backgroundColor:'#F5F7FB'
   },
 }));
 export const DashBoardRoutes = (props) => {
@@ -89,9 +92,9 @@ export const DashBoardRoutes = (props) => {
   }
 
   const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
+    <div className='centrar'>
+      <div className="edu7">Edu7</div>
+      <div>
       <Link className="li" to="/">
       <ListItem  button key={'Dashboard'}>
             <ListItemIcon > <DashboardIcon className="texto-activo" /></ListItemIcon>
@@ -116,7 +119,8 @@ export const DashBoardRoutes = (props) => {
             <ListItemText className="texto-inactivo" primary={'Horario'} />
       </ListItem>
         </Link>
-      
+      </div>
+      <div></div>
         
       
     </div>
@@ -183,6 +187,8 @@ export const DashBoardRoutes = (props) => {
                 <Route path="/asignaturas"  component={AsignaturasPage}/>
                 <Route path="/notas"  component={NotasPage}/>
                 <Route path="/horario"  component={HorarioPage}/>
+                <Route path="/asignatura/:idAsignatura"  component={AsignaturaPage}/>
+                <Route path="/prueba/"  component={PruebaPage}/>
                
             </Switch>
       </main>

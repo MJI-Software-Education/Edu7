@@ -12,46 +12,65 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+  .centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 40px 0px;
+  }
+  .edu7{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    
+  }
 .contenido{
-    height: 400px;
+    height: 300px;
     border-radius: 24px;
     background-color: white;
 }
+
+
 .horario .contenido{
-    height: 100vh;
+    height: 75vh;
    
+}
+.horario {
+    z-index: 1;
+   
+}
+h1, h2, h3, h4{
+    color: #121138;
 }
 .lista{
    display: flex;
+   align-items: center;
    justify-content: space-between;
    background-color: white;
-   border-radius: 24px;
-   padding: 10px 20px;
+   border-radius: 15px;
+   padding: 15px 20px;
    margin-top: 10px;
 
 }
-
-
-.row{
-    padding-right: 0px;
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-column-gap: 20px;
+.deco-none{
+  text-decoration: none;
 }
-.row-sm{
-
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-column-gap: 10px;
+.pointer{
+  cursor: pointer;
+  color: black;
 }
 
-@media only screen and (max-width: 1000px) {
-    .row{
-        padding-right: 0px;
-        grid-template-columns: 100%;
-    }
-    .row-sm{
-        padding-right: 0px;
-        grid-template-columns: 100%;
-    }
-  }
+.negro{
+  color: #121138;
+}
+.purple{
+  background-color: #DCD2F4;
+}
+.img img{
+  width: 300px;
+  height: 300px;
+}
+
+
+

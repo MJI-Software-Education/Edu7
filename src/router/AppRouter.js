@@ -22,7 +22,9 @@ export const AppRouter = () => {
    
     if(checking){
         return (
-            <h1>...Cargando</h1>
+            <div className="loading">
+                <h1>Edu7</h1>
+            </div>
         );
     }
     return (
