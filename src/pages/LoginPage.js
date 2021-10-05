@@ -1,10 +1,30 @@
-import React from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState }  from 'react'
+import { useDispatch,useSelector } from 'react-redux';
 import { dispatchLogin } from '../controllers/auth';
-import { useForm } from '../hooks/useForm'
+import { dispatchGetColegios } from '../controllers/colegio';
+import { useForm } from '../hooks/useForm';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 import '../index.css';
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }));
 export const LoginPage = () => {
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(dispatchGetColegios());       
+    }, [dispatch]);
+    const {colegios} = useSelector(state=>state.colegios);
     const [form, onChange] = useForm({
         email:'miguel@albanezz.com',
         password:'123456'
@@ -12,8 +32,14 @@ export const LoginPage = () => {
     const {email, password} = form;
     const onSubmit =(e)=>{
         e.preventDefault();
-        dispatch(dispatchLogin(email,password));
+        dispatch(dispatchLogin(email,password,colegio));
     }
+    const classes = useStyles();
+    const [colegio, setColegio] = useState('');
+  
+    const handleChange = (event) => {
+        setColegio(event.target.value);
+    };
     return (
         <div className="contenido">
             <div className="row-2">
@@ -23,6 +49,24 @@ export const LoginPage = () => {
                 <div className="center">
                     <form onSubmit={onSubmit}>
                         <h1>Sign in</h1>
+                        <FormControl variant="filled" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-filled-label">Curso</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-filled-label"
+                            id="demo-simple-select-filled"
+                            value={colegio}
+                            onChange={handleChange}
+                            >
+                            <MenuItem value="MJIServer">
+                                <em>MJI</em>
+                            </MenuItem>
+                            {
+                                colegios.map(colegio=>(
+                                    <MenuItem key={colegio.id} value={colegio.nombre.replace(/ /g, "")}>{colegio.nombre}</MenuItem>
+                                ))
+                            }
+                            </Select>
+                        </FormControl>
                         <input type="text" name="email" value={email} onChange={onChange} placeholder="email" />
                         <input type="password" name="password" value={password} onChange={onChange} placeholder="password" />
                         <button>Ingresar</button>
