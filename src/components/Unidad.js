@@ -7,15 +7,20 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { useDispatch } from 'react-redux';
 import { jobStartLoading } from '../controllers/tarea';
 import { useSelector } from 'react-redux';
-export const Unidad = ({unidad, index}) => {
-
+export const Unidad = ({unidad, index, materiales}) => {
+    const baseURL = 'http://localhost:8080/api/material';
     const dispatch = useDispatch();
+    const conexion = localStorage.getItem('conexion');
+    console.log(conexion)
     
     useEffect(() => {
         dispatch( jobStartLoading( unidad._id ) )
     }, [dispatch])
+  
 
     const tareas = useSelector(state => state.jobs.tareas);
+
+   
     
     return (
         <div>
@@ -26,13 +31,15 @@ export const Unidad = ({unidad, index}) => {
             </div>
             
                 <div className="container py-4 ps-5 d-flex flex-column">
-                    <a className="fw-normal fs-5 deco-none pointer " >
-                        <DescriptionIcon className="mb-2" />
-                        Material 1</a>
-                    <a className="fw-normal fs-5 deco-none pointer " >
-                        <DescriptionIcon className="mb-2" />
-                        Material 2</a>
                     {
+                    materiales.map(material=>(
+                        <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
+                        <DescriptionIcon className="mb-2" />
+                        {material.name.split('.')[0]}</a>
+                    ))
+                    }
+                    
+                    {/* {
                         ( tareas ) &&
                         tareas.map( (t, index) => (
 
@@ -43,7 +50,7 @@ export const Unidad = ({unidad, index}) => {
 
                         ))
 
-                    }
+                    } */}
 
                     <div className="d-flex justify-content-between">
                         <div>

@@ -1,7 +1,7 @@
 const baseURL = 'http://localhost:8080/api';
 
 export const fetchSinToken = async(endpoint, data={}, method ='GET') => {
-    const conexion = localStorage.getItem('conexion') || 'MJIServer';
+    const conexion = localStorage.getItem('conexion');
     data.conexion = conexion;
     const url = `${baseURL}/${endpoint}`;
     if(method === 'GET'){
@@ -19,7 +19,7 @@ export const fetchSinToken = async(endpoint, data={}, method ='GET') => {
     }
 }
 export const fetchConToken = async(endpoint, data={}, method ='GET') => {
-    const conexion = localStorage.getItem('conexion') || 'MJIServer';
+    const conexion = localStorage.getItem('conexion');
     data.conexion = conexion;
     const url = `${baseURL}/${endpoint}`;
     const token = localStorage.getItem('token');
@@ -42,5 +42,31 @@ export const fetchConToken = async(endpoint, data={}, method ='GET') => {
             body:JSON.stringify(data)
         });
         return await resp.json();
+    }
+}
+export const fetchConTokenDocumento = async(endpoint, data={}, method ='GET') => {
+    const conexion = localStorage.getItem('conexion') || 'MJIServer';
+    data.conexion = conexion;
+    const url = `${baseURL}/${endpoint}`;
+    const token = localStorage.getItem('token');
+    if(method === 'GET'){
+        const resp = await fetch(url,{
+            method,
+            headers:{
+                'Content-type':'application/json',
+                'x-token':token
+            },
+        });
+        return await resp;
+    }else {
+        const resp = await fetch(url,{
+            method,
+            headers:{
+                'Content-type':'application/json',
+                'x-token':token
+            },
+            body:JSON.stringify(data)
+        });
+        return await resp;
     }
 }

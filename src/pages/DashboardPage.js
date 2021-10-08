@@ -4,14 +4,14 @@ import { ListaTest } from '../components/ListaTest';
 import './Dashboard.css';
 
 export const DashboardPage = () => {
-   const {usuario} = useSelector(state => state.auth)
+   const {nombre,apellidoP} = useSelector(state => state.auth)
     return (
         <div className="">
             <div style={{height: '300px'}}>
                 <div className="container shadow-sm rounded-3 mb-4 purple p-5 h-75  d-flex justify-content-center  justify-content-lg-between align-items-center">
                     <div className="d-flex flex-column">
-                    <h2 className="fs-2 fw-bold">Hola {usuario}</h2>    
-                    <h2 className="fs-5 ">Bienvenido a Edu7</h2>    
+                    <h2 className="fs-2 fw-bold">HOLA {nombre}</h2>    
+                    <h2 className="fs-5 ">Bienvenido/a a Edu7</h2>    
                     </div>
                     <div className="img d-none d-lg-block">
                         <img src={`../assets/welcome.png`} alt="imagen de bienvenida" />

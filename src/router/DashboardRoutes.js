@@ -27,7 +27,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SchoolIcon from '@material-ui/icons/School';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TodayIcon from '@material-ui/icons/Today';
 import { HorarioPage } from '../pages/HorarioPage';
 import { Button } from '@material-ui/core';
@@ -36,6 +35,8 @@ import { dispatchLogout } from '../controllers/auth';
 import { AsignaturaPage } from '../pages/AsignaturaPage';
 import { PruebaPage } from '../pages/PruebaPage';
 import { TareasPage } from '../pages/TareasPage';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import { AsistenciaPage } from '../pages/AsistenciaPage';
 
 const drawerWidth = 200;
 
@@ -76,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     backgroundColor:'#F5F7FB'
+    
   },
 }));
 export const DashBoardRoutes = (props) => {
@@ -119,6 +121,12 @@ export const DashBoardRoutes = (props) => {
       <ListItem button key={'horario'}>
             <ListItemIcon> <TodayIcon className="texto-inactivo" /></ListItemIcon>
             <ListItemText className="texto-inactivo" primary={'Horario'} />
+      </ListItem>
+        </Link>
+        <Link className="li" to="/asistencia">
+      <ListItem button key={'asistencia'}>
+            <ListItemIcon> <AssignmentTurnedInIcon className="texto-inactivo" /></ListItemIcon>
+            <ListItemText className="texto-inactivo" primary={'Asistencia'} />
       </ListItem>
         </Link>
       </div>
@@ -192,6 +200,7 @@ export const DashBoardRoutes = (props) => {
                 <Route path="/horario"  component={HorarioPage}/>
                 <Route path="/asignatura/:idAsignatura"  component={AsignaturaPage}/>
                 <Route path="/prueba/"  component={PruebaPage}/>
+                <Route path="/asistencia"  component={AsistenciaPage}/>
                
             </Switch>
       </main>

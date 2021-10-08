@@ -26,7 +26,8 @@ export const LoginPage = () => {
     }, [dispatch]);
     const {colegios} = useSelector(state=>state.colegios);
     const [form, onChange] = useForm({
-        email:'miguel@albanezz.com',
+        // email:'miguel@albanezz.com',
+        email:'ORTIZ@hotmail.com',
         password:'123456'
     });
     const {email, password} = form;
