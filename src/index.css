@@ -113,17 +113,20 @@ transition-duration: 0.3s;
   text-align: center;
   padding: 5px 0px;
 }
-.presente{
+.Presente{
   background-color: #70CB53;
 }
-.ausente{
+.Ausente{
   background-color: #FA6C5F;
 }
-.retraso{
+.Retraso{
   background-color: #F5C303;
 }
-.justificado{
+.Justificado{
   background-color: #2FCAC1;
+}
+.nulo{
+  background-color: #D7D7D7;
 }
 
 @media only screen and (max-width: 900px) {
