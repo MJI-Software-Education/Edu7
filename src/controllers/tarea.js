@@ -59,11 +59,11 @@ export const jobStartDelete = ( _id ) => {
     }
 }
 
-export const jobStartLoading = ( idUnidad ) => {
+export const jobStartLoading = ( idAsignatura ) => {
     return async ( dispatch ) => {
         try {
             
-            const body = await fetchConToken('tareas/getTareas',{ idUnidad }, 'POST');
+            const body = await fetchConToken('tareas/getTareas',{ idAsignatura }, 'POST');
 
             dispatch( jobLoaded( body.tareas ) )
 

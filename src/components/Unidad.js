@@ -1,27 +1,19 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import DescriptionIcon from '@material-ui/icons/Description';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import { useDispatch } from 'react-redux';
-import { jobStartLoading } from '../controllers/tarea';
 import { useSelector } from 'react-redux';
-export const Unidad = ({unidad, index, materiales}) => {
+import "../styles/tarea.css";
+
+export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno}) => {
     const baseURL = 'http://localhost:8080/api/material';
-    const dispatch = useDispatch();
     const conexion = localStorage.getItem('conexion');
-    console.log(conexion)
-    
-    useEffect(() => {
-        dispatch( jobStartLoading( unidad._id ) )
-    }, [dispatch])
-  
 
-    const tareas = useSelector(state => state.jobs.tareas);
+    const {_id} = useSelector(state => state.auth);
 
-   
-    
     return (
         <div>
             <div className="bg-light py-4 px-4 d-flex flex-row align-items-center">
@@ -32,25 +24,31 @@ export const Unidad = ({unidad, index, materiales}) => {
             
                 <div className="container py-4 ps-5 d-flex flex-column">
                     {
-                    materiales.map(material=>(
-                        <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
-                        <DescriptionIcon className="mb-2" />
-                        {material.name.split('.')[0]}</a>
-                    ))
+                        materiales.map(material=>(
+                            <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
+                            <DescriptionIcon className="mb-2" />
+                            {material.name.split('.')[0]}</a>
+                        ))
                     }
                     
-                    {/* {
-                        ( tareas ) &&
-                        tareas.map( (t, index) => (
+                    {                    
+                        tareas.map((t, index)=>{
+                            
+                            const filteredJob = tareaAlumno?.filter( f => f.idTarea === t.id && f.idUsuario === _id && f.idUnidad === t.idUnidad )
 
-                            <Link key={ t.id } to={`/tareas/${ t.id }`} className="fw-normal fs-5 deco-none pointer " >
-                                <DescriptionIcon className="mb-2" />
+                            if (filteredJob.length >= 1) {
+                                const link = document.getElementById( t.id );
+                                link?.setAttribute("class","fw-normal fs-5 deco-none pointer disabled");
+                            }
+
+                            return(
+                            <Link id={ t.id } key={ t.id } to={`/tareas/${ t.id }`} className="fw-normal fs-5 deco-none pointer" >
+                                <AssignmentTurnedInIcon className="mb-2" />
                                 Tarea { index + 1 }
                             </Link>
-
-                        ))
-
-                    } */}
+                            
+                        )})
+                    }
 
                     <div className="d-flex justify-content-between">
                         <div>

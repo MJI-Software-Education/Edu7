@@ -1,19 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { CardBodyJob } from '../components/CardBodyJob';
 import { CardTitleJob } from '../components/CardTitleJob';
 
 export const TareasPage = () => {
  
     const { idTarea } = useParams();
+    const Asignatura_id = localStorage.getItem('idAsignatura');
 
-    let history = useHistory();
-
-    const handleExit = () => {
-        history.push('/asignaturas');
-    }
-
-    const tareas = useSelector(state => state.jobs.tareas);
+    const tareas = useSelector(state => state.unidades.tareas);
 
     let job;
 
@@ -24,18 +19,11 @@ export const TareasPage = () => {
     })
 
     return (
-        <div>
+        <div className="row">
             <div className="card p-3">
-                <div className="position-relative p-1">
-                    <div className="row">
-                        <div class="d-md-flex justify-content-md-start ">
-                            <button type="button" onClick={ handleExit } name="btnBack" className="m-1 btn btn-outline-danger">Salir</button>
-                        </div>
-                    </div>
-                </div>
                 <div>
-                    <CardTitleJob key={ job?.id } title = { job?.titulo } subtitle = { job?.subtitle } />
-                    <CardBodyJob enunciados={ job?.enunciados } key= { job?.id } />
+                    <CardTitleJob key={ job?.id } title={ job?.titulo } subtitle ={ job?.subtitle } />
+                    <CardBodyJob key={ Asignatura_id } idTarea={ job?.id } idUnidad={ job?.idUnidad } enunciados={ job?.enunciados } />
                 </div>
             </div>
         </div>

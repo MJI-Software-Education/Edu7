@@ -51,7 +51,7 @@ export const LoginPage = () => {
                     <form onSubmit={onSubmit}>
                         <h1>Sign in</h1>
                         <FormControl variant="filled" className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-filled-label">Curso</InputLabel>
+                            <InputLabel id="demo-simple-select-filled-label">Colegio</InputLabel>
                             <Select
                             labelId="demo-simple-select-filled-label"
                             id="demo-simple-select-filled"

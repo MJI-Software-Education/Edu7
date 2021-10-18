@@ -4,11 +4,13 @@ import { tareaReducer } from './tareaReducer';
 import { colegioReducer } from './colegioReducer';
 import { materialReducer } from './materialReducer';
 import { asistenciaReducer } from './asistenciaReducer';
+import { tareaAlumnoReducer } from './tareaAlumnoReducer';
 
 export const rootReducer = combineReducers({
     auth:authReducer,
-    jobs:tareaReducer,
     colegios:colegioReducer,
     materiales:materialReducer,
-    asistencia:asistenciaReducer
+    asistencia:asistenciaReducer,
+    unidades:tareaReducer,
+    tareaAlumno:tareaAlumnoReducer,
 })
