@@ -46,7 +46,7 @@ code {
 .center form input{
   
   border: none;
-  border-bottom: 2px solid #C73CBF;
+  border-bottom: 2px solid #4D4AA0;
   padding: 20px;
   outline: none;
 }
@@ -57,7 +57,7 @@ code {
   margin-top: 30px;
   border: none;
   padding: 20px 10px;
-  background-color: #C73CBF;
+  background-color: #4D4AA0;
   color: white;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -128,7 +128,17 @@ transition-duration: 0.3s;
 .nulo{
   background-color: #D7D7D7;
 }
-
+.color-white{
+  color: white;
+}
+.objetivo{
+  background-color: #B7E394;
+  border-radius: 24px;
+  margin-right: 5px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
 @media only screen and (max-width: 900px) {
   .imagen{
     display: none;

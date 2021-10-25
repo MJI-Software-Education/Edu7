@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { dispatchGetMateriales } from '../controllers/material';
 import { jobStartLoading } from '../controllers/tarea';
 import { tareaAlumnoStartLoading } from '../controllers/tarea_alumno'
-import Swal from 'sweetalert2';
 
 export const AsignaturaPage = () => {
     const dispatch = useDispatch();
@@ -24,7 +23,7 @@ export const AsignaturaPage = () => {
 
     useEffect(() => {
         dispatch( tareaAlumnoStartLoading( _id, idAsignatura ))
-    }, [dispatch, tareaAlumno])
+    }, [dispatch])
 
     useEffect(() => {
         dispatch( dispatchGetMateriales( idCurso.id,idAsignatura ) )
@@ -47,7 +46,6 @@ export const AsignaturaPage = () => {
                     asignatura.unidades.map((unidad, index)=>{
                         const filterMateriales = materiales.filter(material => material.idUnidad === unidad._id)
                         const filterJob = tareas?.filter(tarea => tarea.idUnidad === unidad._id && tarea.enunciados.length !== 0)
-                        
                         return(
                        <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} tareaAlumno={ tareaAlumno } /> 
                     )})

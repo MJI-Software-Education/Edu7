@@ -7,6 +7,8 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BuildIcon from '@material-ui/icons/Build';
+import AudiotrackIcon from '@material-ui/icons/Audiotrack';
+import BugReportIcon from '@material-ui/icons/BugReport';
    
 export const AsignaturasPage = () => {
     const {idCurso} = useSelector(state => state.auth);
@@ -39,6 +41,16 @@ export const AsignaturasPage = () => {
                             color1 = '#CDABF7';
                             color2 = '#8868BA';
                             Icono = OpacityIcon;
+                        }
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('música')){
+                            color1 = '#CDABF7';
+                            color2 = '#8868BA';
+                            Icono = AudiotrackIcon;
+                        }
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('ciencias')){
+                            color1 = '#BEFFD4';
+                            color2 = '#61BD8D';
+                            Icono = BugReportIcon;
                         }
                         else{
                             color1 = '#BEFFD4';

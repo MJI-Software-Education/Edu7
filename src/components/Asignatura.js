@@ -35,7 +35,13 @@ export const Asignatura = ({title, bacgroundColor,icon}) => {
                         <div className={styles.circulo}>
                             {icon}
                         </div>
-                        <h2 className="fw-bold fs-4 text-muted " >{title}</h2>     
+                        <div style={{
+                            width:'80%',
+                            textAlign:'center',
+                            marginTop:'10px'
+                        }}>
+                            <h2 className="fw-bold fs-4 text-muted " >{title}</h2>     
+                        </div>
         </div>
     )
 }
