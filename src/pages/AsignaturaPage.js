@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { dispatchGetMateriales } from '../controllers/material';
 import { jobStartLoading } from '../controllers/tarea';
 import { tareaAlumnoStartLoading } from '../controllers/tarea_alumno'
+import { dispatchGetPruebas } from '../controllers/prueba'
 
 export const AsignaturaPage = () => {
     const dispatch = useDispatch();
@@ -29,10 +30,15 @@ export const AsignaturaPage = () => {
         dispatch( dispatchGetMateriales( idCurso.id,idAsignatura ) )
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch( dispatchGetPruebas( idCurso.id,idAsignatura ) )
+    }, [dispatch]);
+
     const {materiales} = useSelector(state => state.materiales);
-
+    
+    const {pruebas} = useSelector(state => state.pruebas);
+    
     const tareas = useSelector(state => state.unidades.tareas);
-
     localStorage.setItem('idAsignatura',idAsignatura);
 
     return (
@@ -45,9 +51,10 @@ export const AsignaturaPage = () => {
                 {
                     asignatura.unidades.map((unidad, index)=>{
                         const filterMateriales = materiales.filter(material => material.idUnidad === unidad._id)
+                        const filterPruebas = pruebas.filter(prueba => prueba.idUnidad === unidad._id)
                         const filterJob = tareas?.filter(tarea => tarea.idUnidad === unidad._id && tarea.enunciados.length !== 0)
                         return(
-                       <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} tareaAlumno={ tareaAlumno } /> 
+                       <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} pruebas={filterPruebas} tareaAlumno={ tareaAlumno } /> 
                     )})
                 }
             </div>

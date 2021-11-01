@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import "../styles/tarea.css";
 import { ModalUnidad } from './ModalUnidad';
 
-export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno}) => {
+export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas}) => {
     const baseURL = 'http://localhost:8080/api/material';
     const conexion = localStorage.getItem('conexion');
 
@@ -26,7 +26,7 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno}) => {
             </div>
             
             
-                <div className="container py-4 ps-5 d-flex flex-column">
+                <div className="container px-4 py-4 ps-5 d-flex flex-column">
                     {
                         materiales.map(material=>(
                             <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
@@ -54,21 +54,28 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno}) => {
                         )})
                     }
 
-                    <div className="d-flex justify-content-between">
-                        <div>
-                        <Link to="/prueba/" className="fw-normal fs-5 deco-none pointer" >
-                        <InsertDriveFileIcon className="mb-2" />Prueba</Link>
-                        </div>
-                        <div>
-                            {
-                                (index % 2 === 0) 
-                                ? <CheckBoxIcon style={{color:'grey'}} />
-                                : <CheckBoxOutlineBlankIcon />
-                            }
-                            
-                            
-                        </div>
-                    </div>
+      
+                        {
+                            pruebas.map(prueba=>(
+                                <div className="d-flex justify-content-between ">
+                                <div>
+                                <Link to={`/prueba/${prueba.id}`} className="fw-normal fs-5 deco-none pointer" >
+                                <InsertDriveFileIcon className="mb-2" />{prueba.name}</Link>
+                                </div>
+                                <div>
+                                {
+                                    (index % 2 === 0) 
+                                    ? <CheckBoxIcon style={{color:'grey'}} />
+                                    : <CheckBoxOutlineBlankIcon />
+                                }
+                                
+                                
+                                </div>
+                                </div>
+                            ))
+                        }
+                        
+                   
                 </div>
             
     </div>

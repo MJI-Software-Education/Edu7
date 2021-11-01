@@ -131,6 +131,18 @@ transition-duration: 0.3s;
 .color-white{
   color: white;
 }
+.bg-gray1{
+  background-color: #FAFAFA;
+}
+.bg-gray2{
+  background-color: #EFEFEF;
+}
+.marginVanilla{
+  margin: 20px;
+}
+.paddingVanilla{
+  padding: 15px;
+}
 .objetivo{
   background-color: #B7E394;
   border-radius: 24px;

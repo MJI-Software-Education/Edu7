@@ -199,7 +199,7 @@ export const DashBoardRoutes = (props) => {
                 <Route path="/notas"  component={NotasPage}/>
                 <Route path="/horario"  component={HorarioPage}/>
                 <Route path="/asignatura/:idAsignatura"  component={AsignaturaPage}/>
-                <Route path="/prueba/"  component={PruebaPage}/>
+                <Route path="/prueba/:idPrueba"  component={PruebaPage}/>
                 <Route path="/asistencia"  component={AsistenciaPage}/>
                
             </Switch>
