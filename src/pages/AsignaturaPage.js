@@ -59,7 +59,7 @@ export const AsignaturaPage = () => {
                             tAlumno = tareaAlumno.filter( tAlumno => tAlumno.idTarea === t.id && tAlumno.idUsuario === _id && tAlumno.idUnidad === t.idUnidad )
                         })
                         return(
-                       <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} tareaAlumno={ tAlumno } /> 
+                       <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} pruebas={filterPruebas} tareaAlumno={ tAlumno } /> 
                     )})
                 }
             </div>
