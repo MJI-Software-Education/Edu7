@@ -44,6 +44,23 @@ export const fetchConToken = async(endpoint, data={}, method ='GET') => {
         return await resp.json();
     }
 }
+export const fetchConTokenArchivos = async(endpoint, data, method ='GET') => {
+    const conexion = localStorage.getItem('conexion');
+    let formData = new FormData();
+    formData.append('archivo',data);
+    formData.append('conexion',conexion);
+    const url = `${baseURL}/${endpoint}`;
+    const token = localStorage.getItem('token');
+        const resp = await fetch(url,{
+            method,
+            headers:{
+                'x-token':token
+            },
+            body:formData
+        });
+        return await resp.json();
+    
+}
 export const fetchConTokenDocumento = async(endpoint, data={}, method ='GET') => {
     const conexion = localStorage.getItem('conexion') || 'MJIServer';
     data.conexion = conexion;

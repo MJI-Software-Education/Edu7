@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import "../styles/tarea.css";
 import { ModalUnidad } from './ModalUnidad';
 
-export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas}) => {
+export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas,idAsignatura}) => {
     const baseURL = 'http://localhost:8080/api/material';
     const conexion = localStorage.getItem('conexion');
 
@@ -57,9 +57,9 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas}
       
                         {
                             pruebas.map(prueba=>(
-                                <div className="d-flex justify-content-between ">
+                                <div key={prueba.id} className="d-flex justify-content-between ">
                                 <div>
-                                <Link to={`/prueba/${prueba.id}`} className="fw-normal fs-5 deco-none pointer" >
+                                <Link to={`/prueba/${idAsignatura}/${unidad._id}/${prueba.id}`} className="fw-normal fs-5 deco-none pointer" >
                                 <InsertDriveFileIcon className="mb-2" />{prueba.name}</Link>
                                 </div>
                                 <div>

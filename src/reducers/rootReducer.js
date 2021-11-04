@@ -6,6 +6,7 @@ import { materialReducer } from './materialReducer';
 import { asistenciaReducer } from './asistenciaReducer';
 import { tareaAlumnoReducer } from './tareaAlumnoReducer';
 import { pruebaReducer } from './pruebaReducer';
+import { pruebaAlumnoReducer } from './pruebaAlumnoReducer';
 
 export const rootReducer = combineReducers({
     auth:authReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     asistencia:asistenciaReducer,
     unidades:tareaReducer,
     tareaAlumno:tareaAlumnoReducer,
-    pruebas:pruebaReducer
+    pruebas:pruebaReducer,
+    pruebasAlumno:pruebaAlumnoReducer
 })

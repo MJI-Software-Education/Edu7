@@ -87,6 +87,12 @@ transition-duration: 0.3s;
 .ml{
   margin-left: 100px;
 }
+.mt-sm{
+  margin-top: 10px;
+}
+.w-sm{
+  width: 60%;
+}
 .flex{
   display: flex;
   justify-content: space-between;
@@ -150,6 +156,24 @@ transition-duration: 0.3s;
   width: 150px;
   text-align: center;
   cursor: pointer;
+}
+.border-split{
+  border-style:dotted;
+  border-width: 3px;
+  /* opacity: 0.4; */
+}
+.verde{
+  background-color: #CFEFCF;
+}
+.tipos{
+  object-fit: cover;
+  width: 70px;
+  height: 60px;
+}
+.custom-btn{
+  background-color: none;
+  border: 2px solid black;
+  border-radius: 2px;
 }
 @media only screen and (max-width: 900px) {
   .imagen{
