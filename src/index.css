@@ -175,6 +175,19 @@ transition-duration: 0.3s;
   border: 2px solid black;
   border-radius: 2px;
 }
+.opacity-sm{
+  opacity: 0.8;
+}
+.tit-asig{
+  font-size: 16px;
+  font-weight: bold;
+}
+.tit-curso{
+  font-size: 15px;
+}
+.tit-profesor{
+  font-size: 10px;
+}
 @media only screen and (max-width: 900px) {
   .imagen{
     display: none;

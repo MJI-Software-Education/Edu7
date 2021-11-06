@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NotaContext } from '../useContext/NotaContext';
-const { DateTime } = require("luxon");
+import { DateTime } from 'luxon';
 
 export const CardBodyNotas = ({ notas_alumno }) => {
 

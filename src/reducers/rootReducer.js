@@ -8,6 +8,7 @@ import { tareaAlumnoReducer } from './tareaAlumnoReducer';
 import { pruebaReducer } from './pruebaReducer';
 import { notaAlumnoReducer } from './notaAlumnoReducer';
 import { pruebaAlumnoReducer } from './pruebaAlumnoReducer';
+import { horarioReducer } from './horarioReducer';
 
 export const rootReducer = combineReducers({
     auth:authReducer,
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
     tareaAlumno:tareaAlumnoReducer,
     notas_alumno: notaAlumnoReducer,
     pruebas:pruebaReducer,
-    pruebasAlumno:pruebaAlumnoReducer
+    pruebasAlumno:pruebaAlumnoReducer,
+    horario:horarioReducer
 })
