@@ -1,35 +1,51 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { NotaContext } from '../useContext/NotaContext';
+const { DateTime } = require("luxon");
 
-export const CardBodyNotas = () => {
+export const CardBodyNotas = ({ notas_alumno }) => {
+
+    const { notaAsig } = useContext(NotaContext);
+
+    const notasFiltered = notas_alumno.filter( n => n.idAsignatura === notaAsig );
+
     return (
         <div>
             <div className="container">
-                <div className="row mb-3">
-                    <div className="col-1">
-                        Docente:
+                {
+                    ( notasFiltered.length > 0 ) &&
+
+                    <div className="row mb-3">
+                        <div className="col-md-2">
+                            Docente:
+                        </div>
+                        <div className="col-md-10">
+                            { notasFiltered[0]?.idNota.idUsuario.nombre +' '+ notasFiltered[0]?.idNota.idUsuario.apellidoP +' '+ notasFiltered[0]?.idNota.idUsuario.apellidoM }
+                        </div>
                     </div>
-                    <div className="col-11">
-                        Profesor X
-                    </div>
-                </div>
+                }
                 <div className="card border-secondary">
                     <div className="container p-3">
-                        <div className="card border p-3">
-                            <div className="row">
-                                <div className="col-3">
-                                    1
-                                </div>
-                                <div className="col-3">
-                                    Descipción
-                                </div>
-                                <div className="col-3">
-                                    20/11/2021
-                                </div>
-                                <div className="col-3">
-                                    6,5
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            ( notasFiltered.length > 0 ) &&
+                            notasFiltered?.map( (n, index) => (
+                                <div className="card border p-3">
+                                    <div className="row">
+                                        <div className="col-md-2">
+                                            { index + 1 }
+                                        </div>
+                                        <div className="col-md-4">
+                                            {n.idNota.descripcion}
+                                        </div>
+                                        <div className="col-md-4">
+                                            { DateTime.fromISO( n.idNota.fecha ).toFormat('dd/LL/yyyy') }
+                                        </div>
+                                        <div className="col-md-2">
+                                            {n.nota}
+                                        </div>
+                                    </div>
+                                </div>       
+                            ))
+                        }
                     </div>
                 </div>
             </div>

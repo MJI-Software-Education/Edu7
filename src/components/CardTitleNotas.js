@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import "../styles/notaAsignatura.css";
+import { NotaContext } from '../useContext/NotaContext';
 
-export const CardTitleNotas = () => {
+export const CardTitleNotas = ({ asignaturas }) => {
+
+    const { notaAsig, setnotaAsig } = useContext(NotaContext);
+
+    const handleClick = ({target}) => {
+        setnotaAsig( target.id );
+    }
+
     return (
         <div>
-            <div className="card border-secondary">
-                <div className="card-body">
-                    Matemáticas
-                </div>
-            </div>
-            <div className="card border-secondary">
-                <div className="card-body">
-                   Lenguaje 
-                </div>
-            </div>
-            <div className="card border-secondary">
-                <div className="card-body">
-                    Historia
-                </div>
-            </div>
+            {
+                asignaturas.map( a => (
+                    <div className="card border-secondary">
+                        <div id={ a._id } onClick={ handleClick } className="card-body click">
+                            { a.asignatura }
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     )
 }
