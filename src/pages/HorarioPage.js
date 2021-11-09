@@ -10,7 +10,7 @@ export const HorarioPage = () => {
         dispatch(dispatchGetHorario(idCurso.id));
     }, [dispatch])
     const {horario,checking} = useSelector(state => state.horario);
-    const bloquesServer = horario.bloques;
+    const bloquesServer = horario?.bloques || [];
     const bloques = useHorario();
     const dias = ['lunes','martes','miercoles','jueves','viernes','sabado'];
     if(checking){
