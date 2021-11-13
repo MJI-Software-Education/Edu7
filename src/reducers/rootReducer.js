@@ -11,7 +11,7 @@ import { pruebaAlumnoReducer } from './pruebaAlumnoReducer';
 import { horarioReducer } from './horarioReducer';
 import { cursoProfesorReducer } from './cursoProfesorReducer';
 import { asignaturaReducer } from './asignaturaReducer';
-
+//Probando automate de edu7
 export const rootReducer = combineReducers({
     auth:authReducer,
     colegios:colegioReducer,
