@@ -28,7 +28,7 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas,
             
                 <div className="container px-4 py-4 ps-5 d-flex flex-column">
                     {
-                        materiales.map(material=>(
+                        materiales?.map(material=>(
                             <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
                             <DescriptionIcon className="mb-2" />
                             {material.name.split('.')[0]}</a>
@@ -36,7 +36,7 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas,
                     }
                     
                     {                    
-                        tareas.map((t, index)=>{
+                        tareas?.map((t, index)=>{
                             
                             const filteredJob = tareaAlumno?.filter( f => f.idTarea === t.id && f.idUsuario === _id && f.idUnidad === t.idUnidad )
 
@@ -56,7 +56,7 @@ export const Unidad = ({unidad, index, tareas, materiales, tareaAlumno, pruebas,
 
       
                         {
-                            pruebas.map(prueba=>(
+                            pruebas?.map(prueba=>(
                                 <div key={prueba.id} className="d-flex justify-content-between ">
                                 <div>
                                 <Link to={`/prueba/${idAsignatura}/${unidad._id}/${prueba.id}`} className="fw-normal fs-5 deco-none pointer" >

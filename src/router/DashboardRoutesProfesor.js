@@ -28,12 +28,13 @@ import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { dispatchLogout } from '../controllers/auth';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { AsignaturasPagePorfesor } from '../pages-profesor/AsignaturasPagePorfesor';
+import { AsignaturasPageProfesor } from '../pages-profesor/AsignaturasPageProfesor';
 import { WelcomePageProfesor } from '../pages-profesor/WelcomePageProfesor';
 import { NotasPageProfesor } from '../pages-profesor/NotasPageProfesor';
 import { HorarioPageProfesor } from '../pages-profesor/HorarioPageProfesor';
 import { AsignaturaPageProfesor } from '../pages-profesor/AsignaturaPageProfesor';
 import { AsistenciaPageProfesor } from '../pages-profesor/AsistenciaPageProfesor';
+import { CursoPage } from '../pages-profesor/CursoPage';
 
 const drawerWidth = 200;
 
@@ -102,10 +103,10 @@ export const DashBoardRoutesProfesor = (props) => {
             <ListItemText className="texto-activo" primary={'Dashboard'} />
       </ListItem>
         </Link>
-        <Link className="li" to="/asignaturas">
-      <ListItem button key={'asignaturas'}>
+        <Link className="li" to="/curso">
+      <ListItem button key={'curso'}>
             <ListItemIcon> <SchoolIcon className="texto-inactivo" /></ListItemIcon>
-            <ListItemText className="texto-inactivo" primary={'Asignaturas'} />
+            <ListItemText className="texto-inactivo" primary={'Curso'} />
       </ListItem>
         </Link>
         <Link className="li" to="/notas">
@@ -191,7 +192,9 @@ export const DashBoardRoutesProfesor = (props) => {
         <div className={classes.toolbar} />
         <Switch>
                 <Route exact path="/"  component={WelcomePageProfesor}/>
-                <Route path="/asignaturas"  component={AsignaturasPagePorfesor}/>
+                <Route path="/curso"  component={CursoPage}/>
+                <Route path="/asignaturasCurso/:idCurso"  component={AsignaturasPageProfesor}/>
+                <Route path="/asignaturaProfesor/:idAsignatura"  component={AsignaturaPageProfesor}/>
                 <Route path="/notas"  component={NotasPageProfesor}/>
                 <Route path="/horario"  component={HorarioPageProfesor}/>
                 <Route path="/asignatura/:idAsignatura"  component={AsignaturaPageProfesor}/>
