@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { CursoProfesorStartLoading } from '../controllers/cursoProfesor';
+import { dispatchGetCursos } from '../controllers/cursos-profesor';
 
 
 export const WelcomePageProfesor = () => {
@@ -11,7 +11,7 @@ export const WelcomePageProfesor = () => {
     const {_id:idUsuario} = useSelector(state => state.auth)
 
     useEffect(() => {
-        dispatch(CursoProfesorStartLoading(idUsuario))
+        dispatch(dispatchGetCursos(idUsuario))
     }, [dispatch])
 
     return (

@@ -9,16 +9,11 @@ import { Link } from 'react-router-dom';
 import BuildIcon from '@material-ui/icons/Build';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import BugReportIcon from '@material-ui/icons/BugReport'; 
-import { dispatchGetCursos } from '../controllers/cursos-profesor';
 import { Curso } from '../components/Curso';
-import { getAsignaturaByCursoId } from '../helpers/getAsignaturaByCursoId';
+
    
 export const CursoPage = () => {
     const dispatch = useDispatch();
-    const {_id} = useSelector(state => state.auth);
-    useEffect(() => {
-        dispatch(dispatchGetCursos(_id))
-    }, [dispatch]);
     const {cursos:courses} = useSelector(state => state.cursosProfesor);
     const cursos = [];
     const map = new Map();
