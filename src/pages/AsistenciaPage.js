@@ -128,7 +128,7 @@ export const AsistenciaPage = () => {
               </TableCell>
               <TableCell align="left">{row.asistente}</TableCell>
              {
-               asistencia.map(asist=>{
+               asistencia?.map(asist=>{
                  if(asist.fecha.split('T')[0] === row.fecha){
                    verificar++;
                   return <TableCell key={asist.fecha} align="left"><div className={`btn-asistencia ${asist.asistencia}`}>{asist.asistencia}</div></TableCell>  

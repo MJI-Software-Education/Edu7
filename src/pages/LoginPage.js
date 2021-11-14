@@ -62,7 +62,7 @@ export const LoginPage = () => {
                                 <em>MJI</em>
                             </MenuItem>
                             {
-                                colegios.map(colegio=>(
+                                colegios?.map(colegio=>(
                                     <MenuItem key={colegio.id} value={colegio.nombre.replace(/ /g, "")}>{colegio.nombre}</MenuItem>
                                 ))
                             }
