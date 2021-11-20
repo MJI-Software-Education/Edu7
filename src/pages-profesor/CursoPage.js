@@ -1,10 +1,9 @@
 import  Exposure  from '@material-ui/icons/Exposure'
-import React, { useEffect } from 'react'
-import { Asignatura } from '../components/Asignatura'
+import React from 'react'
 import ExplicitIcon from '@material-ui/icons/Explicit';
 import OpacityIcon from '@material-ui/icons/Opacity';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BuildIcon from '@material-ui/icons/Build';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
@@ -13,7 +12,6 @@ import { Curso } from '../components/Curso';
 
    
 export const CursoPage = () => {
-    const dispatch = useDispatch();
     const {cursos:courses} = useSelector(state => state.cursosProfesor);
     const cursos = [];
     const map = new Map();

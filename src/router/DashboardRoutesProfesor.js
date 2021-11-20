@@ -154,7 +154,7 @@ export const DashBoardRoutesProfesor = (props) => {
           <Typography variant="h6" noWrap>
            
           </Typography>
-          <Button onClick={onClick} color="secondary" variant="outlined"  className="boton" color="inherit">Logout</Button>
+          <Button onClick={onClick} color="secondary" variant="outlined"  className="boton" >Logout</Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -194,7 +194,7 @@ export const DashBoardRoutesProfesor = (props) => {
                 <Route exact path="/"  component={WelcomePageProfesor}/>
                 <Route path="/curso"  component={CursoPage}/>
                 <Route path="/asignaturasCurso/:idCurso"  component={AsignaturasPageProfesor}/>
-                <Route path="/asignaturaProfesor/:idAsignatura"  component={AsignaturaPageProfesor}/>
+                <Route path="/asignaturaProfesor/:idAsignatura/:idCurso"  component={AsignaturaPageProfesor}/>
                 <Route path="/notas"  component={NotasPageProfesor}/>
                 <Route path="/horario"  component={HorarioPageProfesor}/>
                 <Route path="/asignatura/:idAsignatura"  component={AsignaturaPageProfesor}/>

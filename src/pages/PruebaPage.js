@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { getPruebaById } from '../helpers/getAsignaturaById';
 import { useDispatch, useSelector } from 'react-redux';
 import { Contenido } from '../components/Contenido';
-import Dropzone, {useDropzone} from 'react-dropzone';
+import Dropzone from 'react-dropzone';
 import { dispatchGetPrueba, dispatchSubirPrueba } from '../controllers/prueba-alumno';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 export const PruebaPage = () => {

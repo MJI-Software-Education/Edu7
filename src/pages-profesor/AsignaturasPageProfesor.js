@@ -62,7 +62,7 @@ export const AsignaturasPageProfesor = () => {
                         }
                         return(
                         
-                        <Link className="deco-none" key={asignatura.idAsignatura._id} to={`/asignaturaProfesor/${asignatura.idAsignatura._id}`}>
+                        <Link className="deco-none" key={asignatura.idAsignatura._id} to={`/asignaturaProfesor/${asignatura.idAsignatura._id}/${idCurso}`}>
                             <div className="col">
                                 <Asignatura bacgroundColor={color1} title={asignatura.idAsignatura.asignatura} icon={<Icono style={{ fontSize: 60,color: color2, }}  />}  />
                             </div>

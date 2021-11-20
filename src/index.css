@@ -165,6 +165,9 @@ transition-duration: 0.3s;
 .verde{
   background-color: #CFEFCF;
 }
+.caja{
+  width: 500px;
+}
 .tipos{
   object-fit: cover;
   width: 70px;
