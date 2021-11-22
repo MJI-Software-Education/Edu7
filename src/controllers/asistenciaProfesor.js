@@ -9,7 +9,7 @@ export const asistenciaProfesorStartAddNew = ({ idUsuario, idCurso, idColegio, f
             const body = await fetchConToken('asistenciaProfesor', { idUsuario, idCurso, idColegio, fecha, year, asistencia }, 'POST');
             
             if ( body.ok ) {
-                dispatch( notaAlumnoAddNew( body.asistencia ) )
+                dispatch( asistenciaProfesorAddNew( body.asistencia ) )
             }
 
         } catch (error) {
