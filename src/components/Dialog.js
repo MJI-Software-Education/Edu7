@@ -37,6 +37,7 @@ export const DialogModal = ({idAsignatura,idUnidad,idCurso}) => {
    const onClick = () => {
      // console.log(files[0].props.children[0]);
      dispatch(dispatchSubirMaterial(idCurso,idAsignatura,idUnidad,file));
+     setFile('');
      setOpen(false);
    }
  

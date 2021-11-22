@@ -17,8 +17,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 //import { DateTime } from 'luxon';
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import es from 'date-fns/locale/es';
-registerLocale('es', es)
+// import es from 'date-fns/locale/es';
+// registerLocale('es', es)
 
 const useStyles = makeStyles({
     table: {
