@@ -20,4 +20,10 @@ export const types = {
     cursoProfesorAddNew: '[cursoProfesor] Add New',
     cursoProfesorUpdated: '[cursoProfesor] cursoProfesor Actualizado',
     cursoProfesorLoaded: '[cursoProfesor] cursoProfesor Cargados',
+
+    asistenciaProfesorStartAddNew: '[asistenciaProfesor] Start Add New',
+    cursoAsistenciaAddNew: '[asistenciaProfesor] Add New',
+    cursoAsistenciapdated: '[asistenciaProfesor] asistenciaProfesor Actualizado',
+    cursoAsistenciaLoaded: '[asistenciaProfesor] asistenciaProfesor Cargados',
+
 }

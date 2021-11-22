@@ -9,9 +9,11 @@ import { pruebaReducer } from './pruebaReducer';
 import { notaAlumnoReducer } from './notaAlumnoReducer';
 import { pruebaAlumnoReducer } from './pruebaAlumnoReducer';
 import { horarioReducer } from './horarioReducer';
-import { cursoProfesorReducer } from './cursoProfesorReducer';
 import { asignaturaReducer } from './asignaturaReducer';
 //Probando automate de edu7
+import { cursoProfesorReducer } from './cursoProfesorReducer'
+import { asistenciaProfesorReducer } from './asistenciaProfesorReducers'
+
 export const rootReducer = combineReducers({
     auth:authReducer,
     colegios:colegioReducer,
@@ -24,5 +26,6 @@ export const rootReducer = combineReducers({
     pruebasAlumno:pruebaAlumnoReducer,
     horario:horarioReducer,
     cursosProfesor:cursoProfesorReducer,
-    asignatura:asignaturaReducer
+    asignatura:asignaturaReducer,
+    asistenciaProfesor:asistenciaProfesorReducer
 })
