@@ -1,6 +1,8 @@
 const initialState = {
     checking:true,
-    cursos:[]
+    cursos:[],
+    alumnos:[],
+    pruebas:[]
 }
 
 export const cursoProfesorReducer = (state=initialState,action)=>{
@@ -11,6 +13,19 @@ export const cursoProfesorReducer = (state=initialState,action)=>{
                 checking:false,
                 cursos:action.payload
             }
+            case 'getUsuariosProfesor':
+                return {
+                    ...state,
+                    checking:false,
+                    alumnos:action.payload
+                }
+            case 'getPruebasProfesor':
+                return {
+                    ...state,
+                    checking:false,
+                    pruebas:action.payload
+                }
+
         case 'endCheck':
             return {
                 checking:false,
