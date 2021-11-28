@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { dispatchGetPruebas, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2'
+import { notaAlumnoStartAddNew } from '../controllers/nota_alumno';
 
 const useStyles = makeStyles({
     table: {
@@ -18,8 +19,10 @@ export const NotasPageProfesor = () => {
     const [curso, setCurso] = useState("");
     const [letra, setLetra] = useState("");
     const [asignatura, setAsignatura] = useState("");
+    const [nota, setNota] = useState();
+    // const [totalNotas, setTotalNotas] = useState([]);
     const [prueba, setPrueba] = useState("");
-
+    const {_id:idUsuario} = useSelector(state => state.auth)
     const { cursos:courses } = useSelector(state => state.cursosProfesor);
     const cursos = [];
     const letras = [];
@@ -80,7 +83,16 @@ export const NotasPageProfesor = () => {
     }
 
     const handleAsignatura = (e) => {
-        dispatch( dispatchGetPruebas( letra, e ) );
+        dispatch( dispatchGetPruebas( idUsuario, e ) );
+    }
+    
+    const handleChangeNota = (e, idAlumno) => {
+        // console.log(e);
+        
+        if (e.keyCode === 13) {
+            dispatch(notaAlumnoStartAddNew(prueba, idAlumno, curso, asignatura, e.target.value ))    
+        }
+        
     }
 
     return (
@@ -149,10 +161,11 @@ export const NotasPageProfesor = () => {
                                             <em>Seleccione</em>
                                         </MenuItem>
                                         {
-                                            ( asignaturas.length > 0 ) &&
-                                            asignaturas.map( (c) => (
-                                                // ( c.idCurso._id === letra ) &&
-                                                <MenuItem onChange={ handleAsignatura } name={c.idAsignatura.asignatura} key={c.idAsignatura._id} value={c.idAsignatura._id}>{c.idAsignatura.asignatura}</MenuItem>
+                                            courses?.map( (c) => (
+                                                c.idAsignatura.map( (a) => (
+                                                    ( c.idCurso._id === letra ) &&
+                                                    <MenuItem onChange={ handleAsignatura } name={a.asignatura} key={a._id} value={a._id}>{a.asignatura}</MenuItem>
+                                                ))
                                             ))
                                         }
                                     </Select>
@@ -175,7 +188,7 @@ export const NotasPageProfesor = () => {
                                         {
                                             ( pruebas.length > 0 ) && 
                                             pruebas.map( p => (
-                                                <MenuItem key={p.id} name={p.name} value={p.id}>{p.name}</MenuItem>
+                                                <MenuItem key={p.id} name={p.descripcion} value={p.id}>{p.descripcion}</MenuItem>
                                             ))
                                         }
 
@@ -203,13 +216,13 @@ export const NotasPageProfesor = () => {
                                 <TableBody>
                                 {
                                     ( alumnos.length > 0) ?
-                                    alumnos.map( a => (
-                                        <TableRow>
+                                    alumnos.map( (a) => (
+                                        <TableRow key={a._id}>
                                             <TableCell>{ a.nombre }</TableCell>
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
-                                            <TableCell></TableCell>
+                                            <TableCell> <input type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} value={nota} min="1.0" step="0.1" max="7.0" maxLength={2} id={a._id} /> </TableCell>
                                         </TableRow>
                                     ))
                                     : <TableCell>Ups... Parece que aún no hay registros</TableCell>

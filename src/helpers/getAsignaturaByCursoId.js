@@ -1,7 +1,7 @@
 
 export const getAsignaturaByCursoId = (id, cursos) => {
     const asignatura = cursos.filter(a => a.idCurso._id === id);
-    return asignatura;
+    return asignatura[0];
 }
 
 

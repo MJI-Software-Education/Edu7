@@ -23,10 +23,9 @@ export const dispatchGetUsuarios =(idCurso)=>{
     }
 }
 
-export const dispatchGetPruebas =(idCurso, idAsignatura)=>{
+export const dispatchGetPruebas =(idUsuario, idAsignatura)=>{
     return async(dispatch) =>{
-        const resp = await fetchConToken(`cursoProfesor/getPruebas`,{idCurso,idAsignatura},'POST');
-        console.log(resp);
+        const resp = await fetchConToken(`cursoProfesor/getPruebas`,{idUsuario,idAsignatura},'POST');
         if(resp.ok){
             dispatch(getPruebasProfesor(resp.pruebasProfesor));
         }else{

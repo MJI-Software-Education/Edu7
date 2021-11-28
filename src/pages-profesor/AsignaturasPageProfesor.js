@@ -15,42 +15,42 @@ import { getAsignaturaByCursoId } from '../helpers/getAsignaturaByCursoId';
 export const AsignaturasPageProfesor = () => {
     const {cursos} = useSelector(state => state.cursosProfesor);
     const {idCurso} = useParams();
-    const asignaturas = getAsignaturaByCursoId(idCurso,cursos);
+    const curso = getAsignaturaByCursoId(idCurso,cursos);
     let color1 = '#F9DB67';
     let color2 = '#c4a010';
     let Icono = Exposure;
     return (
         <div className="container">
-            <h2 className="fw-bold fs-3" >{`${asignaturas[0].idCurso.curso} ${asignaturas[0].idCurso.letra}`}</h2>
+            {/* <h2 className="fw-bold fs-3" >{`${curso[0].idCurso.curso} ${curso[0].idCurso.letra}`}</h2> */}
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4">
                 {
-                    asignaturas.map(asignatura => {
-                        if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('matemática')){
+                    curso.idAsignatura.map(asignatura => {
+                        if(asignatura.asignatura.toString().toLowerCase().includes('matemática')){
                             color1 = '#F9DB67';
                             color2 = '#c4a010';
                             Icono = Exposure;
                         }
-                        else if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('lenguaje')){
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('lenguaje')){
                             color1 = '#DBE8FB';
                             color2 = '#5783c5';
                             Icono = ExplicitIcon;
                         }
-                        else if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('química')){
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('química')){
                             color1 = '#FF6767';
                             color2 = '#d44545';
                             Icono = WhatshotIcon;
                         }
-                        else if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('física')){
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('física')){
                             color1 = '#CDABF7';
                             color2 = '#8868BA';
                             Icono = OpacityIcon;
                         }
-                        else if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('música')){
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('música')){
                             color1 = '#CDABF7';
                             color2 = '#8868BA';
                             Icono = AudiotrackIcon;
                         }
-                        else if(asignatura.idAsignatura.asignatura.toString().toLowerCase().includes('ciencias')){
+                        else if(asignatura.asignatura.toString().toLowerCase().includes('ciencias')){
                             color1 = '#BEFFD4';
                             color2 = '#61BD8D';
                             Icono = BugReportIcon;
@@ -62,9 +62,9 @@ export const AsignaturasPageProfesor = () => {
                         }
                         return(
                         
-                        <Link className="deco-none" key={asignatura.idAsignatura._id} to={`/asignaturaProfesor/${asignatura.idAsignatura._id}/${idCurso}`}>
+                        <Link className="deco-none" key={asignatura?._id} to={`/asignaturaProfesor/${asignatura._id}/${idCurso}`}>
                             <div className="col">
-                                <Asignatura bacgroundColor={color1} title={asignatura.idAsignatura.asignatura} icon={<Icono style={{ fontSize: 60,color: color2, }}  />}  />
+                                <Asignatura bacgroundColor={color1} title={asignatura.asignatura} icon={<Icono style={{ fontSize: 60,color: color2, }}  />}  />
                             </div>
                         </Link>
                     )})

@@ -1,12 +1,12 @@
 import { fetchConToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
-export const notaAlumnoStartAddNew = ({ idNota, idUsuario, idCurso, idAsignatura, nota, fecha }) => {
+export const notaAlumnoStartAddNew = ( idNota, idUsuario, idCurso, idAsignatura, nota) => {
     return async ( dispatch ) => {
         try {
             
-            const body = await fetchConToken('notasAlumno', { idNota, idUsuario, idCurso, idAsignatura, nota, fecha }, 'POST');
-
+            const body = await fetchConToken('notasAlumno', { idNota, idUsuario, idCurso, idAsignatura, nota}, 'POST');
+            console.log(body);
             if ( body.ok ) {
                 dispatch( notaAlumnoAddNew( body.notas_alumno ) )
             }

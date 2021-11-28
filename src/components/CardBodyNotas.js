@@ -6,7 +6,7 @@ export const CardBodyNotas = ({ notas_alumno }) => {
 
     const { notaAsig } = useContext(NotaContext);
 
-    const notasFiltered = notas_alumno.filter( n => n.idAsignatura === notaAsig );
+    const notasFiltered = notas_alumno.filter( n => n?.idAsignatura === notaAsig );
 
     return (
         <div>
