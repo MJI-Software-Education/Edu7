@@ -1,12 +1,12 @@
 import { fetchConToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
-export const jobStartAddNew = () => {
+export const jobStartAddNew = (idCurso, idAsignatura,idUnidad, titulo, subtitle, dateInit, dateEnd) => {
     return async ( dispatch ) => {
         try {
             
-            const body = await fetchConToken('tareas', {}, 'POST');
-
+            const body = await fetchConToken('tareas', {idCurso, idAsignatura,idUnidad, titulo, subtitle, dateInit, dateEnd}, 'POST');
+            console.log(body)
             if ( body.ok ) {
                 dispatch( jobAddNew( body.tarea ) )
             }

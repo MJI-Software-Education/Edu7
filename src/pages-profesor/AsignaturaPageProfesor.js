@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
-
+import { jobStartLoading } from '../controllers/tarea';
 import { dispatchGetAsignatura } from '../controllers/asignatura'
 import { UnidadProfesor } from '../components/UnidadProfesor'
 import { dispatchGetMateriales } from '../controllers/material'
@@ -15,14 +15,17 @@ export const AsignaturaPageProfesor = () => {
         dispatch(dispatchGetAsignatura(idAsignatura))
     }, [dispatch])
     useEffect(() => {
+        dispatch( jobStartLoading( idAsignatura ) )
+    }, [dispatch])
+    useEffect(() => {
         dispatch( dispatchGetMateriales( idCurso,idAsignatura ) )
     }, [dispatch]);
     const {materiales} = useSelector(state => state.materiales);
     const {asignatura,checking} = useSelector(state => state.asignatura);
+    const tareas = useSelector(state => state.unidades.tareas);
     const unidades = asignatura?.unidades;
 
-
-    
+    console.log(tareas)
 
     if(checking){
         return (
@@ -43,8 +46,9 @@ export const AsignaturaPageProfesor = () => {
                 {
                     unidades?.map((unidad, index)=>{
                         const filterMateriales = materiales.filter(material => material.idUnidad === unidad._id)
+                        const filterJob = tareas?.filter(tarea => tarea.idUnidad === unidad._id)
                         return(
-                       <UnidadProfesor key={unidad._id} materiales={filterMateriales} unidad={unidad} index={index+1}  idAsignatura={idAsignatura} idCurso={idCurso}/> 
+                       <UnidadProfesor key={unidad._id} materiales={filterMateriales} tareas={filterJob} unidad={unidad} index={index+1}  idAsignatura={idAsignatura} idCurso={idCurso}/> 
                     )})
                 }
             </div>

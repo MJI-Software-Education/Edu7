@@ -16,6 +16,14 @@ export const tareaReducer = ( state = initialState, action ) => {
                     action.payload,
                 ]
             }
+        case 'newEnunciado':
+            return {
+                ...state,
+                tareas: [
+                    ...state.tareas,
+                    state.tareas.filter(t=>t.id === action.payload.idTarea)[0].enunciados.push(action.payload)
+                ]
+            }
 
         case types.jobUpdated:
             return {
