@@ -34,6 +34,12 @@ export const dispatchGetPruebas =(idUsuario, idAsignatura)=>{
     }
 }
 
+export const dispatchCursoProfesorLogout = () => {
+    return async (dispatch) => {
+        dispatch(endCheck());
+    }
+}
+
 const getCursosProfesor = (cursoProfesor) =>( {
     type:'getCursosProfesor',
     payload:cursoProfesor
@@ -50,5 +56,5 @@ const getPruebasProfesor = (pruebasProfesor) =>( {
 });
 
 const endCheck = () =>( {
-    type:'endCheck',
+    type:'cursoProfesorLogout',
 });

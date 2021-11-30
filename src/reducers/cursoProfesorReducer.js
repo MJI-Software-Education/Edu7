@@ -26,9 +26,12 @@ export const cursoProfesorReducer = (state=initialState,action)=>{
                     pruebas:action.payload
                 }
 
-        case 'endCheck':
+        case 'cursoProfesorLogout':
             return {
                 checking:false,
+                cursos:[],
+                alumnos:[],
+                pruebas:[]
             }
     
         default:
