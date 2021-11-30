@@ -162,6 +162,7 @@ export const NotasPageProfesor = () => {
                                         </MenuItem>
                                         {
                                             courses?.map( (c) => (
+                                                ( c.idAsignatura.length > 0 ) &&
                                                 c.idAsignatura.map( (a) => (
                                                     ( c.idCurso._id === letra ) &&
                                                     <MenuItem onChange={ handleAsignatura } name={a.asignatura} key={a._id} value={a._id}>{a.asignatura}</MenuItem>
