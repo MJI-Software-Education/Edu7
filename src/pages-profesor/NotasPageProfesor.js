@@ -1,8 +1,8 @@
 import { FormControl, InputLabel, makeStyles, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { dispatchGetPruebas, dispatchGetUsuarios } from '../controllers/cursos-profesor';
+import { dispatchCursoProfesorCleanAlumnos, dispatchGetNotas, dispatchGetPruebas, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2'
 import { notaAlumnoStartAddNew } from '../controllers/nota_alumno';
 
@@ -19,8 +19,6 @@ export const NotasPageProfesor = () => {
     const [curso, setCurso] = useState("");
     const [letra, setLetra] = useState("");
     const [asignatura, setAsignatura] = useState("");
-    const [nota, setNota] = useState();
-    // const [totalNotas, setTotalNotas] = useState([]);
     const [prueba, setPrueba] = useState("");
     const {_id:idUsuario} = useSelector(state => state.auth)
     const { cursos:courses } = useSelector(state => state.cursosProfesor);
@@ -28,6 +26,10 @@ export const NotasPageProfesor = () => {
     const letras = [];
     const asignaturas = [];
     const map = new Map();
+
+    useEffect(() => {
+        dispatch(dispatchCursoProfesorCleanAlumnos())
+    }, [dispatch])
 
     for (const curso of courses) {
         if(!map.has(curso.idCurso.curso)){
@@ -50,8 +52,7 @@ export const NotasPageProfesor = () => {
         }
     }
     
-    const { alumnos } = useSelector(state => state.cursosProfesor);
-    const { pruebas } = useSelector(state => state.cursosProfesor);
+    const { alumnos, pruebas, notas } = useSelector(state => state.cursosProfesor);
 
     const handleChangeCurso = (event) => {
         setCurso(event.target.value);
@@ -73,6 +74,7 @@ export const NotasPageProfesor = () => {
     const handleClick = () => {
         if (curso !== "" && letra !== "" && asignatura !== "" && prueba !== "") {
             dispatch( dispatchGetUsuarios( letra ) );
+            dispatch( dispatchGetNotas(letra, asignatura, prueba))
         }else{
             Swal.fire({
                 icon: 'error',
@@ -87,17 +89,26 @@ export const NotasPageProfesor = () => {
     }
     
     const handleChangeNota = (e, idAlumno) => {
-        // console.log(e);
-        
-        if (e.keyCode === 13) {
-            dispatch(notaAlumnoStartAddNew(prueba, idAlumno, curso, asignatura, e.target.value ))    
+
+        const onlyDouble = /^-?[\d.]+(?:e-?\d+)?$/;        
+        if( onlyDouble.test(e.target.value) ){
+            let decimal = parseFloat(e.target.value).toFixed(1);
+            if (e.keyCode === 13 && decimal <= 7.0 && decimal >= 1.0) {
+                document.getElementById(idAlumno).setAttribute("disabled",true);
+                dispatch(notaAlumnoStartAddNew(prueba, idAlumno, curso, asignatura, decimal.replace(".",",") ));
+                setTimeout(() => {
+                    document.getElementById(idAlumno).removeAttribute("disabled");
+                    document.getElementById(idAlumno).setAttribute("class","rounded border border-success border-3");
+                }, 1500);
+            } else {
+                document.getElementById(idAlumno).removeAttribute("class");
+            }
         }
-        
     }
 
     return (
         <div>
-            <h1>NotasPageProfesor</h1>
+            <h2 className="fw-bold fs-3">Notas</h2>
             <div className="row">
                 <div className="container">
                     <div className="card p-4 m-2">
@@ -116,7 +127,7 @@ export const NotasPageProfesor = () => {
                                             <em>Seleccione</em>
                                         </MenuItem>
                                         {
-                                            ( cursos.length > 0 ) &&
+                                            ( cursos?.length > 0 ) &&
                                             cursos.map( (c) => (
                                                 <MenuItem key={c.idCurso._id} name={c.idCurso.curso} value={c.idCurso._id}>{c.idCurso.curso}</MenuItem>
                                             ))
@@ -138,9 +149,8 @@ export const NotasPageProfesor = () => {
                                             <em>Seleccione</em>
                                         </MenuItem>
                                         {
-                                            ( letras.length > 0 ) &&
+                                            ( letras?.length > 0 ) &&
                                             letras.map( (c) => (
-                                                // ( c.idCurso._id === curso ) &&
                                                 <MenuItem key={c.idCurso._id} name={c.idCurso.letra} value={c.idCurso._id}>{c.idCurso.letra}</MenuItem>
                                             ))
                                         }
@@ -162,7 +172,7 @@ export const NotasPageProfesor = () => {
                                         </MenuItem>
                                         {
                                             courses?.map( (c) => (
-                                                ( c.idAsignatura.length > 0 ) &&
+                                                ( c.idAsignatura?.length > 0 ) &&
                                                 c.idAsignatura.map( (a) => (
                                                     ( c.idCurso._id === letra ) &&
                                                     <MenuItem onChange={ handleAsignatura } name={a.asignatura} key={a._id} value={a._id}>{a.asignatura}</MenuItem>
@@ -187,7 +197,7 @@ export const NotasPageProfesor = () => {
                                         </MenuItem>
 
                                         {
-                                            ( pruebas.length > 0 ) && 
+                                            ( pruebas?.length > 0 ) && 
                                             pruebas.map( p => (
                                                 <MenuItem key={p.id} name={p.descripcion} value={p.id}>{p.descripcion}</MenuItem>
                                             ))
@@ -216,14 +226,22 @@ export const NotasPageProfesor = () => {
                                 </TableHead>
                                 <TableBody>
                                 {
-                                    ( alumnos.length > 0) ?
+                                    ( alumnos?.length > 0) ?
                                     alumnos.map( (a) => (
                                         <TableRow key={a._id}>
                                             <TableCell>{ a.nombre }</TableCell>
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
-                                            <TableCell> <input type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} value={nota} min="1.0" step="0.1" max="7.0" maxLength={2} id={a._id} /> </TableCell>
+                                            <TableCell key={a.idUsuario}> <input className="rounded" type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,5" /> </TableCell>
+                                            {/* {
+                                                ( notas.length > 0 ) ?
+                                                notas.map( (n) => (
+                                                    ( n.idUsuario === a._id ) &&
+                                                    <TableCell key={n.idUsuario}> <input className="rounded" type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,5" /> </TableCell>
+                                                ))
+                                                : <TableCell> <input type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,0" /> </TableCell>
+                                            } */}
                                         </TableRow>
                                     ))
                                     : <TableCell>Ups... Parece que aún no hay registros</TableCell>

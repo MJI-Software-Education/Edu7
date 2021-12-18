@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 //import { DateTime } from 'luxon';
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 
-import { dispatchGetUsuarios } from '../controllers/cursos-profesor';
+import { dispatchCursoProfesorCleanAlumnos, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2';
 
 import es from 'date-fns/locale/es';
@@ -42,6 +42,10 @@ export const AsistenciaPageProfesor = () => {
     const cursos = [];
     const letras = [];
     const map = new Map();
+
+    useEffect(() => {
+        dispatch(dispatchCursoProfesorCleanAlumnos())
+    }, [dispatch])
 
     for (const curso of courses) {
         if(!map.has(curso.idCurso.curso)){
@@ -169,7 +173,7 @@ export const AsistenciaPageProfesor = () => {
                         </TableHead>
                         <TableBody>
                                 {
-                                    ( alumnos.length > 0) ?
+                                    ( alumnos?.length > 0) ?
                                     alumnos.map( a => (
                                         <TableRow>
                                             <TableCell>{ a.nombre }</TableCell>
