@@ -2,7 +2,8 @@ const initialState = {
     checking:true,
     cursos:[],
     alumnos:[],
-    pruebas:[]
+    pruebas:[],
+    notas:[]
 }
 
 export const cursoProfesorReducer = (state=initialState,action)=>{
@@ -13,27 +14,36 @@ export const cursoProfesorReducer = (state=initialState,action)=>{
                 checking:false,
                 cursos:action.payload
             }
-            case 'getUsuariosProfesor':
-                return {
-                    ...state,
-                    checking:false,
-                    alumnos:action.payload
-                }
-            case 'getPruebasProfesor':
-                return {
-                    ...state,
-                    checking:false,
-                    pruebas:action.payload
-                }
+        case 'getUsuariosProfesor':
+            return {
+                ...state,
+                checking:false,
+                alumnos:action.payload
+            }
+        case 'getPruebasProfesor':
+            return {
+                ...state,
+                checking:false,
+                pruebas:action.payload
+            }
+        case 'getNotasProfesor':
+            return {
+                ...state,
+                checking:false,
+                notas:action.payload
+            }
+
+        case 'cursoProfesorCleanAlumnos':
+            return {
+                ...state,
+                alumnos:[],
+            }
 
         case 'cursoProfesorLogout':
             return {
-                checking:false,
-                cursos:[],
-                alumnos:[],
-                pruebas:[]
+                initialState
             }
-    
+        
         default:
             return state;
     }

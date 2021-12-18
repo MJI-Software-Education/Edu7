@@ -6,7 +6,6 @@ export const notaAlumnoStartAddNew = ( idNota, idUsuario, idCurso, idAsignatura,
         try {
             
             const body = await fetchConToken('notasAlumno', { idNota, idUsuario, idCurso, idAsignatura, nota}, 'POST');
-            console.log(body);
             if ( body.ok ) {
                 dispatch( notaAlumnoAddNew( body.notas_alumno ) )
             }
@@ -75,4 +74,8 @@ export const notaAlumnoStartLoading = ( idUsuario ) => {
 const notaAlumnoLoaded = ( notas_alumno ) => ({
     type: types.nota_alumnoLoaded,
     payload: notas_alumno
+})
+
+const notaAlumnoChecking = () => ({
+    type: types.nota_alumnoChecking
 })

@@ -15,6 +15,7 @@ export const types = {
     nota_alumnoAddNew: '[nota_alumno] Add New',
     nota_alumnoUpdated: '[nota_alumno] Nota Actualizada',
     nota_alumnoLoaded: '[nota_alumno] Notas del Alumno cargadas',
+    nota_alumnoChecking: '[nota_alumno] Checking true',
 
     cursoProfesorStartAddNew: '[cursoProfesor] Start Add New',
     cursoProfesorAddNew: '[cursoProfesor] Add New',
