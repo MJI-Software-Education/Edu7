@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DialogItem } from './DialogItem';
 import { useDispatch } from 'react-redux';
 import { DispatchDeleteEnunciado } from '../controllers/enunciado';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { DispatchDeleteItem } from '../controllers/item';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -22,9 +24,13 @@ const useStyles = makeStyles((theme) => ({
 export default function ExpansionTarea({tarea,enunciado}) {
   const dispatch = useDispatch();
   const classes = useStyles();
+
   const onDelete = ()=>{
-    console.log('aqui');
     dispatch(DispatchDeleteEnunciado(enunciado._id, enunciado.idTarea))
+  }
+  const onDeleteItem = (thisId)=>{
+
+    dispatch(DispatchDeleteItem(thisId,enunciado._id, enunciado.idTarea))
   }
   return (
     <div className={classes.root}>
@@ -37,13 +43,19 @@ export default function ExpansionTarea({tarea,enunciado}) {
           <Typography className={classes.heading}>{enunciado.enunciado}</Typography>
         </AccordionSummary>
         <AccordionDetails >
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column w-100">
 
             {enunciado.items.map(e=>(
+              <div className="d-flex justify-content-between">
                 <h2 className="fst-normal fs-5">
-                  
-                    <DialogItem idEnunciado={enunciado._id} tareaId={enunciado.idTarea} cuerpo={e} mode={2}/>
+                    <DialogItem key={e._id} idEnunciado={enunciado._id} tareaId={enunciado.idTarea} cuerpo={e} mode={2}/>
                 </h2>
+               
+
+                <DeleteIcon onClick={()=>onDeleteItem(e._id)} className="red cursor"/>
+              
+              </div>
+                  
             ))}
           </div>
          

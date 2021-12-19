@@ -26,6 +26,7 @@ export const tareaReducer = ( state = initialState, action ) => {
                     .enunciados.push(action.payload)
                 ]
             }
+     
         case 'dispatchNewItem':
             return {
                 ...state,
@@ -37,11 +38,29 @@ export const tareaReducer = ( state = initialState, action ) => {
                     .items.push(action.payload)
                 ]
             }
+        case 'dispatchEditItem':
+            const nuevaTarea = state.tareas.filter(t=>t.id === action.tareaId)[0] ;
+            const nuevoEnunciado = nuevaTarea.enunciados.filter(e=>e._id === action.payload.idEnunciado)[0];
+            nuevoEnunciado.items = nuevoEnunciado.items.map(i=>i._id === action.payload._id ?action.payload:i);
+            nuevaTarea.enunciados = nuevaTarea.enunciados.map(e=>e._id === action.payload.idEnunciado?nuevoEnunciado:e);
+            
+            return {
+                ...state,
+                    tareas:state.tareas.map(t=>t.id===action.tareaId ? nuevaTarea:t)
+            }
+        case 'DispatchDeleteItem':
+            const nuevaTarea2 = state.tareas.filter(t=>t.id === action.tareaId)[0] ;
+            const nuevoEnunciado2 = nuevaTarea2.enunciados.filter(e=>e._id === action.idEnunciado)[0];
+            nuevoEnunciado2.items = nuevoEnunciado2.items.filter(i=>i._id !== action.payload);
+            nuevaTarea2.enunciados = nuevaTarea2.enunciados.map(e=>e._id === action.idEnunciado?nuevoEnunciado2:e);
+            
+            return {
+                ...state,
+                    tareas:state.tareas.map(t=>t.id===action.tareaId ? nuevaTarea2:t)
+            }
         case 'dispatchDeleteEnunciado':
-            console.log(action.payload)
             const nuevo = state.tareas.filter(t=>t.id === action.tareaId)[0] ;
             nuevo.enunciados = nuevo.enunciados.filter(e=>e._id != action.payload);
-            console.log(nuevo)
             return {
                 ...state,
                     tareas:state.tareas.map(t=>t.id===action.tareaId ? nuevo:t)

@@ -13,7 +13,7 @@ export const useForm = (initialState = {})=>{
             ...state,
             [target.name]: target.value
         });
-       
+       console.log(target.value)
     }
 
     return [state, onChange, reset,setState];

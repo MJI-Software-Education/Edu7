@@ -15,7 +15,6 @@ export const DispatchDeleteEnunciado = (id,tareaId) => {
     return async ( dispatch ) => {
         try {
             const body = await fetchConToken(`enunciados/${id}`, {}, 'DELETE');
-            console.log(tareaId);
             if ( body.ok ) {
                 dispatch( dispatchDeleteEnunciado(id,tareaId) )
             }
