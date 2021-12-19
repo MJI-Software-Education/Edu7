@@ -46,11 +46,11 @@ export default function ExpansionTarea({tarea,enunciado}) {
           <div className="d-flex flex-column w-100">
 
             {enunciado.items.map(e=>(
-              <div className="d-flex justify-content-between">
+              <div key={e._id} className="d-flex justify-content-between">
                 <h2 className="fst-normal fs-5">
-                    <DialogItem key={e._id} idEnunciado={enunciado._id} tareaId={enunciado.idTarea} cuerpo={e} mode={2}/>
+                    <DialogItem  idEnunciado={enunciado._id} tareaId={enunciado.idTarea} cuerpo={e} mode={2}/>
                 </h2>
-               
+                
 
                 <DeleteIcon onClick={()=>onDeleteItem(e._id)} className="red cursor"/>
               

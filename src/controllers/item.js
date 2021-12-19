@@ -12,7 +12,7 @@ export const DispatchNewItem = (idEnunciado,item,isCorrect=false,tareaId) => {
         }
     }
 }
-export const DispatchEditItem = (item,isCorrect,tareaId,id) => {
+export const DispatchEditItem = (item,isCorrect=false,tareaId,id) => {
     return async ( dispatch ) => {
         try {
             const body = await fetchConToken(`items/${id}`, {item,isCorrect}, 'PUT');
