@@ -24,6 +24,7 @@ export const AsignaturasPageProfesor = () => {
             {/* <h2 className="fw-bold fs-3" >{`${curso[0].idCurso.curso} ${curso[0].idCurso.letra}`}</h2> */}
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 gy-4">
                 {
+                    ( curso.idAsignatura.length > 0 ) ?
                     curso.idAsignatura.map(asignatura => {
                         if(asignatura.asignatura.toString().toLowerCase().includes('matemática')){
                             color1 = '#F9DB67';
@@ -68,6 +69,7 @@ export const AsignaturasPageProfesor = () => {
                             </div>
                         </Link>
                     )})
+                    : <h4>Ups... Parece que no hay asignaturas en este curso</h4>
                 }
 
                 

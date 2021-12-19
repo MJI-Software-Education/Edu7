@@ -34,6 +34,29 @@ export const dispatchGetPruebas =(idUsuario, idAsignatura)=>{
     }
 }
 
+export const dispatchGetNotas =(idCurso, idAsignatura, idNota)=>{
+    return async(dispatch) =>{
+        const resp = await fetchConToken(`cursoProfesor/getNotas`,{idCurso, idAsignatura, idNota},'POST');
+        if(resp.ok){
+            dispatch(getNotasProfesor(resp.NotasAlumnoProfesor));
+        }else{
+            dispatch(endCheck())
+        }
+    }
+}
+
+export const dispatchCursoProfesorCleanAlumnos = () => {
+    return async (dispatch) => {
+        dispatch(clearAlumnos());
+    }
+}
+
+export const dispatchCursoProfesorLogout = () => {
+    return async (dispatch) => {
+        dispatch(endCheck());
+    }
+}
+
 const getCursosProfesor = (cursoProfesor) =>( {
     type:'getCursosProfesor',
     payload:cursoProfesor
@@ -49,6 +72,15 @@ const getPruebasProfesor = (pruebasProfesor) =>( {
     payload:pruebasProfesor
 });
 
+const getNotasProfesor = (notasProfesor) =>( {
+    type:'getNotasProfesor',
+    payload:notasProfesor
+});
+
 const endCheck = () =>( {
-    type:'endCheck',
+    type:'cursoProfesorLogout',
+});
+
+const clearAlumnos = () =>( {
+    type:'cursoProfesorCleanAlumnos',
 });
