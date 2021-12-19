@@ -21,7 +21,20 @@ export const tareaReducer = ( state = initialState, action ) => {
                 ...state,
                 tareas: [
                     ...state.tareas,
-                    state.tareas.filter(t=>t.id === action.payload.idTarea)[0].enunciados.push(action.payload)
+                    state.tareas
+                    .filter(t=>t.id === action.payload.idTarea)[0]
+                    .enunciados.push(action.payload)
+                ]
+            }
+        case 'dispatchNewItem':
+            return {
+                ...state,
+                tareas: [
+                    ...state.tareas,
+                    state.tareas
+                    .filter(t=>t.id === action.tareaId)[0]
+                    .enunciados.filter(e=>e._id===action.payload.idEnunciado)[0]
+                    .items.push(action.payload)
                 ]
             }
 

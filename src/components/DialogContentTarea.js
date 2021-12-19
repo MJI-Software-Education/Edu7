@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { useForm } from '../hooks/useForm';
 import { dispatchNewEnunciado } from '../controllers/enunciado';
+import ExpansionTarea from './ExpansionTarea';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -55,7 +56,7 @@ export const DialogContentTareaModal = ({tarea}) => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">Editar tarea {tarea.titulo}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">Enunciados de la tarea {tarea.titulo}</DialogTitle>
         <DialogContent>
         <div  className="caja">
             <div className="container bg-white p-4 rounded ">
@@ -66,9 +67,8 @@ export const DialogContentTareaModal = ({tarea}) => {
                      <input className="mb-4" onChange={onChange} type="text" name="enunciado" value={enunciado} placeholder='Título' />
                      {
                          tarea.enunciados.map(enunciado=>(
-                             <h2>
-                                 {enunciado.enunciado}
-                             </h2>
+                           <ExpansionTarea key={enunciado._id} tarea={tarea} enunciado={enunciado} />
+                          
                          ))
                      }
                         </section>
@@ -77,7 +77,7 @@ export const DialogContentTareaModal = ({tarea}) => {
 
 
                 <div className="container d-flex justify-content-center mt-4">
-                    <button onClick={onClick} className="btn btn-success mx-4">Agregar entrega</button>
+                    <button onClick={onClick} className="btn btn-success mx-4">Agregar enunciado</button>
                     
                 </div>
                     </>

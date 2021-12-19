@@ -5,7 +5,6 @@ export const dispatchGetAsignatura =(id)=>{
     return async(dispatch) =>{
         dispatch(startCheck());
         const resp = await fetchConToken(`asignatura/getAsignatura/${id}`,{},'POST');
-        console.log(resp);
         if(resp.ok){
             dispatch(getAsignatura(resp.asignatura));
         }else{

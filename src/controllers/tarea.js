@@ -16,10 +16,30 @@ export const jobStartAddNew = (idCurso, idAsignatura,idUnidad, titulo, subtitle,
         }
     }
 }
+export const DispatchNewItem = (idEnunciado,item,isCorrect=false,tareaId) => {
+    return async ( dispatch ) => {
+        try {
+               console.log(tareaId)
+            const body = await fetchConToken('items', {idEnunciado,item,isCorrect}, 'POST');
+            console.log(body)
+            if ( body.ok ) {
+                dispatch( dispatchNewItem( body.item,tareaId ) )
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 const jobAddNew = (job) => ({
     type: types.jobAddNew,
     payload: job,
+})
+const dispatchNewItem = (item,tareaId) => ({
+    type: 'dispatchNewItem',
+    payload: item,
+    tareaId:tareaId
 })
 
 export const jobStartUpdated = ( tarea, _id ) => {

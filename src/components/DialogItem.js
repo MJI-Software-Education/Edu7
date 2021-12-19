@@ -6,23 +6,21 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { useDispatch } from 'react-redux';
-import { jobStartAddNew } from '../controllers/tarea';
+import { DispatchNewItem } from '../controllers/tarea';
 import { useForm } from '../hooks/useForm';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const DialogTareaModal = ({idAsignatura,idUnidad,idCurso}) => {
+export const DialogItem = ({idEnunciado,tareaId}) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [form, onChange] = useForm({
-      title:'',
-      subtitle:'',
-      dateInit: Date.now(),
-      dateEnd: Date.now(),
+      item:'',
+      isCorrect:''
   });
-  const {title, subtitle,dateInit, dateEnd} = form;
+  const {item, isCorrect} = form;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,9 +31,8 @@ export const DialogTareaModal = ({idAsignatura,idUnidad,idCurso}) => {
 
  
    const onClick = () => {
-    setOpen(false);
-     dispatch(jobStartAddNew(idCurso,idAsignatura,idUnidad,title,subtitle,dateInit,dateEnd));
-
+       setOpen(false);
+     dispatch(DispatchNewItem(idEnunciado,item,isCorrect,tareaId));
    }
  
 
@@ -52,7 +49,7 @@ export const DialogTareaModal = ({idAsignatura,idUnidad,idCurso}) => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">Nueva tarea</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">Item</DialogTitle>
         <DialogContent>
         <div  className="caja">
             <div className="container bg-white p-4 rounded ">
@@ -60,17 +57,15 @@ export const DialogTareaModal = ({idAsignatura,idUnidad,idCurso}) => {
                 {<>
                     <div className="container bg-light h-50">   
                         <section className="container d-flex flex-column ">
-                     <input className="mb-4" onChange={onChange} type="text" name="title" value={title} placeholder='Título' />
-                     <input className="mb-4" type="text" onChange={onChange} name="subtitle" value={subtitle} placeholder='Subtítulo' />
-                     <input className="mb-4" type="date" onChange={onChange} name="dateInit" value={dateInit} placeholder='Subtítulo' />
-                     <input className="mb-4" type="date" onChange={onChange} name="dateEnd" value={dateEnd} placeholder='Subtítulo' />
+                     <input className="mb-4" onChange={onChange} type="text" name="item" value={item} placeholder='Item' />
+                     <input className="mb-4" type="text" onChange={onChange} name="isCorrect" value={isCorrect} placeholder='¿Es correcto?' />
                         </section>
                 </div>
                 
 
 
                 <div className="container d-flex justify-content-center mt-4">
-                    <button onClick={onClick} className="btn btn-success mx-4">Agregar tarea</button>
+                    <button onClick={onClick} className="btn btn-success mx-4">Agregar item</button>
                     
                 </div>
                     </>

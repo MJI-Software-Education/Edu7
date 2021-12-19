@@ -5,8 +5,6 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
-import { useSelector } from 'react-redux';
 import "../styles/tarea.css";
 import { ModalUnidad } from './ModalUnidad';
 import { DialogModal } from './Dialog';
@@ -34,7 +32,7 @@ export const UnidadProfesor = ({unidad, index, tareas, materiales, pruebas,idAsi
                 <h1 className="fw-bold fs-4">Materiales</h1>
                     {
                         materiales?.map(material=>(
-                            <a href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
+                            <a key={material.id} href={`${baseURL}/${conexion}/${material.id}`}  key={material.id} className="fw-normal fs-5 deco-none pointer " >
                             <DescriptionIcon className="mb-2" />
                             {material.name.split('.')[0]}</a>
                         ))
