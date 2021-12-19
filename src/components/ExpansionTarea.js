@@ -6,7 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DialogItem } from './DialogItem';
-
+import { useDispatch } from 'react-redux';
+import { DispatchDeleteEnunciado } from '../controllers/enunciado';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -19,7 +20,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ExpansionTarea({tarea,enunciado}) {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const onDelete = ()=>{
+    console.log('aqui');
+    dispatch(DispatchDeleteEnunciado(enunciado._id, enunciado.idTarea))
+  }
   return (
     <div className={classes.root}>
       <Accordion> 
@@ -35,7 +41,8 @@ export default function ExpansionTarea({tarea,enunciado}) {
 
             {enunciado.items.map(e=>(
                 <h2 className="fst-normal fs-5">
-                    {e.item}
+                  
+                    <DialogItem idEnunciado={enunciado._id} tareaId={enunciado.idTarea} cuerpo={e} mode={2}/>
                 </h2>
             ))}
           </div>
@@ -43,6 +50,7 @@ export default function ExpansionTarea({tarea,enunciado}) {
           
         </AccordionDetails>
         <div className="d-flex justify-content-end pointer p">
+          <button onClick={onDelete} className="btn btn-danger mr-5">Eliminar</button>
                 <DialogItem idEnunciado={enunciado._id} tareaId={enunciado.idTarea}/>
                         </div>
       </Accordion>

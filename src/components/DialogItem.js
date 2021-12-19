@@ -13,12 +13,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const DialogItem = ({idEnunciado,tareaId}) => {
+export const DialogItem = ({idEnunciado,tareaId,cuerpo,mode}) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const [form, onChange] = useForm({
-      item:'',
-      isCorrect:''
+  const [form, onChange,setState] = useForm({
+      item:cuerpo===undefined ?'': cuerpo.item,
+      isCorrect:cuerpo===undefined ?'':cuerpo.isCorrect
   });
   const {item, isCorrect} = form;
   const handleClickOpen = () => {
@@ -34,13 +34,27 @@ export const DialogItem = ({idEnunciado,tareaId}) => {
        setOpen(false);
      dispatch(DispatchNewItem(idEnunciado,item,isCorrect,tareaId));
    }
+   const onEdit = () => {
+       setOpen(false);
+     dispatch(DispatchNewItem(idEnunciado,item,isCorrect,tareaId));
+   }
+
  
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        +
-      </Button>
+      
+      {
+        mode===2 ?
+        <div  className="fw-normal fs-5 deco-none pointer" onClick={handleClickOpen} >
+     
+                                {cuerpo.item}
+     </div>:
+     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+     +
+   </Button>
+      }
+      
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -49,7 +63,11 @@ export const DialogItem = ({idEnunciado,tareaId}) => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">Item</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">
+        {
+           mode===2?cuerpo.item:'Item'
+        }
+        </DialogTitle>
         <DialogContent>
         <div  className="caja">
             <div className="container bg-white p-4 rounded ">
@@ -65,7 +83,11 @@ export const DialogItem = ({idEnunciado,tareaId}) => {
 
 
                 <div className="container d-flex justify-content-center mt-4">
-                    <button onClick={onClick} className="btn btn-success mx-4">Agregar item</button>
+                    <button onClick={onClick} className="btn btn-success mx-4">
+                      {
+                        mode===2?'Guardar':'Agregar Item'
+                      }
+                    </button>
                     
                 </div>
                     </>

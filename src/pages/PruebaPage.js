@@ -44,9 +44,8 @@ export const PruebaPage = () => {
   );
 
   const onClick = () => {
-    // console.log(files[0].props.children[0]);
     dispatch(dispatchSubirPrueba(idCurso.id,idAsignatura,idUnidad,idPrueba,file));
-    console.log(idCurso.id,idAsignatura,idUnidad,idPrueba);
+
   }
 
   const handleDrop = (archivo, algo)=>{

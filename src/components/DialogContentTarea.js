@@ -19,13 +19,9 @@ export const DialogContentTareaModal = ({tarea}) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [form, onChange] = useForm({
-      title:'',
       enunciado:'',
-      subtitle:'',
-      dateInit: Date.now(),
-      dateEnd: Date.now(),
   });
-  const {title, subtitle,enunciado,dateInit, dateEnd} = form;
+  const {enunciado} = form;
   const handleClickOpen = () => {
     setOpen(true);
   };

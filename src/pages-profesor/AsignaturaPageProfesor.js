@@ -25,7 +25,6 @@ export const AsignaturaPageProfesor = () => {
     const tareas = useSelector(state => state.unidades.tareas);
     const unidades = asignatura?.unidades;
 
-    console.log(tareas)
 
     if(checking){
         return (

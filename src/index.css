@@ -191,6 +191,9 @@ transition-duration: 0.3s;
 .p{
   padding: 10px;
 }
+.mr-5{
+  margin-right: 5px;
+}
 .tit-curso{
   font-size: 15px;
 }
