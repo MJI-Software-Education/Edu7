@@ -7,6 +7,7 @@ import { useForm } from '../hooks/useForm';
 export const CellNotas = ({n, index, a, prueba, curso, asignatura}) => {
 
     const dispatch = useDispatch();
+
     const [ form, onChange ] = useForm({
         valor: ( a._id == n[index]?.idUsuario) ? n[index]?.nota : 1
     });

@@ -19,6 +19,7 @@ export const NotasPageProfesor = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     
+    const { alumnos, pruebas, notas } = useSelector(state => state.cursosProfesor);
     const [curso, setCurso] = useState("");
     const [letra, setLetra] = useState("");
     const [asignatura, setAsignatura] = useState("");
@@ -54,8 +55,6 @@ export const NotasPageProfesor = () => {
             asignaturas.push(curso);
         }
     }
-    
-    const { alumnos, pruebas, notas } = useSelector(state => state.cursosProfesor);
 
     const handleChangeCurso = (event) => {
         setCurso(event.target.value);
@@ -76,8 +75,10 @@ export const NotasPageProfesor = () => {
 
     const handleClick = () => {
         if (curso !== "" && letra !== "" && asignatura !== "" && prueba !== "") {
-            dispatch( dispatchGetUsuarios( letra ) );
             dispatch( dispatchGetNotas(letra, asignatura, prueba))
+            setTimeout(() => {
+                dispatch( dispatchGetUsuarios( letra ) );
+            }, 100);
         }else{
             Swal.fire({
                 icon: 'error',
@@ -218,10 +219,7 @@ export const NotasPageProfesor = () => {
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
-                                            {
-                                                ( notas?.length > 0 ) &&
-                                                <CellNotas n={notas} index={index} a={a} prueba={prueba} curso={curso} asignatura={asignatura} />
-                                            }
+                                            <CellNotas n={notas} index={index} a={a} prueba={prueba} curso={curso} asignatura={asignatura} />
                                         </TableRow>
                                     ))
                                     : <TableCell>Ups... Parece que aún no hay registros</TableCell>
