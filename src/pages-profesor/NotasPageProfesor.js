@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dispatchCursoProfesorCleanAlumnos, dispatchGetNotas, dispatchGetPruebas, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2'
 import { notaAlumnoStartAddNew } from '../controllers/nota_alumno';
+import { useForm } from '../hooks/useForm';
+import { CellNotas } from '../components/CellNotas';
 
 const useStyles = makeStyles({
     table: {
@@ -16,6 +18,7 @@ export const NotasPageProfesor = () => {
 
     const dispatch = useDispatch();
     const classes = useStyles();
+    
     const [curso, setCurso] = useState("");
     const [letra, setLetra] = useState("");
     const [asignatura, setAsignatura] = useState("");
@@ -86,24 +89,6 @@ export const NotasPageProfesor = () => {
 
     const handleAsignatura = (e) => {
         dispatch( dispatchGetPruebas( idUsuario, e ) );
-    }
-    
-    const handleChangeNota = (e, idAlumno) => {
-
-        const onlyDouble = /^-?[\d.]+(?:e-?\d+)?$/;        
-        if( onlyDouble.test(e.target.value) ){
-            let decimal = parseFloat(e.target.value).toFixed(1);
-            if (e.keyCode === 13 && decimal <= 7.0 && decimal >= 1.0) {
-                document.getElementById(idAlumno).setAttribute("disabled",true);
-                dispatch(notaAlumnoStartAddNew(prueba, idAlumno, curso, asignatura, decimal.replace(".",",") ));
-                setTimeout(() => {
-                    document.getElementById(idAlumno).removeAttribute("disabled");
-                    document.getElementById(idAlumno).setAttribute("class","rounded border border-success border-3");
-                }, 1500);
-            } else {
-                document.getElementById(idAlumno).removeAttribute("class");
-            }
-        }
     }
 
     return (
@@ -233,15 +218,12 @@ export const NotasPageProfesor = () => {
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
-                                            <TableCell key={a.idUsuario}> <input className="rounded" type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,5" /> </TableCell>
-                                            {/* {
-                                                ( notas.length > 0 ) ?
+                                            {
+                                                ( notas.length > 0 ) &&
                                                 notas.map( (n) => (
-                                                    ( n.idUsuario === a._id ) &&
-                                                    <TableCell key={n.idUsuario}> <input className="rounded" type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,5" /> </TableCell>
+                                                    <CellNotas n={n} a={a} prueba={prueba} curso={curso} asignatura={asignatura} />
                                                 ))
-                                                : <TableCell> <input type="number" onKeyDown={(e) => handleChangeNota(e,a._id)} min="1.0" step="0.1" max="7.0" id={a._id} placeholder="6,0" /> </TableCell>
-                                            } */}
+                                            }
                                         </TableRow>
                                     ))
                                     : <TableCell>Ups... Parece que aún no hay registros</TableCell>
