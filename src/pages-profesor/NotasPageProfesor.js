@@ -212,17 +212,15 @@ export const NotasPageProfesor = () => {
                                 <TableBody>
                                 {
                                     ( alumnos?.length > 0) ?
-                                    alumnos.map( (a) => (
+                                    alumnos.map( (a, index) => (
                                         <TableRow key={a._id}>
                                             <TableCell>{ a.nombre }</TableCell>
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
                                             {
-                                                ( notas.length > 0 ) &&
-                                                notas.map( (n) => (
-                                                    <CellNotas n={n} a={a} prueba={prueba} curso={curso} asignatura={asignatura} />
-                                                ))
+                                                ( notas?.length > 0 ) &&
+                                                <CellNotas n={notas} index={index} a={a} prueba={prueba} curso={curso} asignatura={asignatura} />
                                             }
                                         </TableRow>
                                     ))
