@@ -12,16 +12,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-import { dispatchGetAsistencia } from '../controllers/asistencia';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-//import { DateTime } from 'luxon';
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 
 import { dispatchCursoProfesorCleanAlumnos, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2';
 
 import es from 'date-fns/locale/es';
+import { CellAsistencia } from '../components/CellAsistencia';
 registerLocale('es', es)
 
 const useStyles = makeStyles({
@@ -34,10 +33,9 @@ export const AsistenciaPageProfesor = () => {
 
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [curso, setCurso] = useState();
-    const [letra, setletra] = useState();
+    const [curso, setCurso] = useState("");
+    const [letra, setletra] = useState("");
     const [fecha, setfecha] = useState(new Date());
-    
     const { cursos:courses } = useSelector(state => state.cursosProfesor);
     const cursos = [];
     const letras = [];
@@ -135,7 +133,6 @@ export const AsistenciaPageProfesor = () => {
                                         {
                                             ( letras.length > 0 ) &&
                                             letras.map( (c) => (
-                                                // ( c.idCurso._id === curso ) &&
                                                 <MenuItem key={c.idCurso._id} name={c.idCurso.letra} value={c.idCurso._id}>{c.idCurso.letra}</MenuItem>
                                             ))
                                         }
@@ -152,6 +149,13 @@ export const AsistenciaPageProfesor = () => {
                             </div>
                             <div className="col-md-3">
                                 <button type="submit" onClick={handleClick} className="btn btn-success">Filtrar</button>
+                            </div>
+                            <div className="card p-1 m-1">
+                                <h6>Siglas para la asistencia:</h6>
+                                <label>P : Presente</label>
+                                <label>A : Ausente</label>
+                                <label>J : Justificado</label>
+                                <label>R : Retraso</label>
                             </div>
                         </div>
                     </div>                    
@@ -174,13 +178,13 @@ export const AsistenciaPageProfesor = () => {
                         <TableBody>
                                 {
                                     ( alumnos?.length > 0) ?
-                                    alumnos.map( a => (
-                                        <TableRow>
+                                    alumnos.map( (a, index) => (
+                                        <TableRow key={a._id}>
                                             <TableCell>{ a.nombre }</TableCell>
                                             <TableCell>{ a.apellidoP }</TableCell>
                                             <TableCell>{ a.apellidoM }</TableCell>
                                             <TableCell>{ a.run }</TableCell>
-                                            <TableCell></TableCell>
+                                            <CellAsistencia a={a} index={index} fecha={fecha} letra={letra} />
                                         </TableRow>
                                     ))
                                     : <TableCell>Ups... Parece que aún no hay registros</TableCell>

@@ -4,8 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { dispatchCursoProfesorCleanAlumnos, dispatchGetNotas, dispatchGetPruebas, dispatchGetUsuarios } from '../controllers/cursos-profesor';
 import Swal from 'sweetalert2'
-import { notaAlumnoStartAddNew } from '../controllers/nota_alumno';
-import { useForm } from '../hooks/useForm';
 import { CellNotas } from '../components/CellNotas';
 
 const useStyles = makeStyles({
