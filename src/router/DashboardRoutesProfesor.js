@@ -36,6 +36,7 @@ import { AsignaturaPageProfesor } from '../pages-profesor/AsignaturaPageProfesor
 import { AsistenciaPageProfesor } from '../pages-profesor/AsistenciaPageProfesor';
 import { CursoPage } from '../pages-profesor/CursoPage';
 import { dispatchCursoProfesorLogout } from '../controllers/cursos-profesor';
+import { dispatchCleanAsistencia } from '../controllers/asistenciaProfesor';
 
 const drawerWidth = 200;
 
@@ -93,6 +94,7 @@ export const DashBoardRoutesProfesor = (props) => {
   const onClick = () => {
     dispatch(dispatchLogout());
     dispatch(dispatchCursoProfesorLogout());
+    dispatch(dispatchCleanAsistencia());
   }
 
   const drawer = (

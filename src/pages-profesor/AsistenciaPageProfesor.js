@@ -21,6 +21,7 @@ import Swal from 'sweetalert2';
 
 import es from 'date-fns/locale/es';
 import { CellAsistencia } from '../components/CellAsistencia';
+import { AsistenciaProfesorStartLoading } from '../controllers/asistenciaProfesor';
 registerLocale('es', es)
 
 const useStyles = makeStyles({
@@ -71,7 +72,10 @@ export const AsistenciaPageProfesor = () => {
 
     const handleClick = () => {
         if (curso !== "" && letra !== "") {
-            dispatch( dispatchGetUsuarios( letra ) );
+            dispatch( AsistenciaProfesorStartLoading( letra, fecha.toISOString() ) )
+            setTimeout(() => {
+                dispatch( dispatchGetUsuarios( letra ) );
+            }, 100);
         }else{
             Swal.fire({
                 icon: 'error',

@@ -7,27 +7,24 @@ const initialState = {
 export const asistenciaProfesorReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case types.cursoProfesorAddNew:
-            return {
-                ...state,
-                asistenciaProfesor: [
-                    ...state.asistenciaProfesor,
-                    action.payload
-                ]
-            }
-        case types.cursoProfesorUpdated:
+        case types.asistenciaCursoUpdated:
             return {
                 ...state,
                 asistenciaProfesor: state.asistenciaProfesor.map(
-                    t => ( t._id === action.payload._id ) ? action.payload : t
+                    a => ( a.id === action.payload.id ) ? action.payload : a
                 )
             }
 
-        case types.cursoAsistenciaLoaded:
+        case types.asistenciaCursoLoaded:
             return {
                 ...state,
                 asistenciaProfesor: [...action.payload]
             }
+
+            case 'asistenciaProfesorLogout':
+                return {
+                    asistenciaProfesor: []
+                }
 
         default:
             return state;
