@@ -13,6 +13,7 @@ import { asignaturaReducer } from './asignaturaReducer';
 //Probando automate de edu7
 import { cursoProfesorReducer } from './cursoProfesorReducer'
 import { asistenciaProfesorReducer } from './asistenciaProfesorReducers'
+import { streamReducer } from './streamReducer';
 
 export const rootReducer = combineReducers({
     auth:authReducer,
@@ -27,5 +28,6 @@ export const rootReducer = combineReducers({
     horario:horarioReducer,
     cursosProfesor:cursoProfesorReducer,
     asignatura:asignaturaReducer,
-    asistenciaProfesor:asistenciaProfesorReducer
+    asistenciaProfesor:asistenciaProfesorReducer,
+    stream:streamReducer
 })

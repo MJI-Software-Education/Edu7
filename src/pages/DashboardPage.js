@@ -1,10 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { ListaTest } from '../components/ListaTest';
+import { dispatchGetStream } from '../controllers/stream';
 import './Dashboard.css';
 
 export const DashboardPage = () => {
-   const {nombre,apellidoP} = useSelector(state => state.auth)
+   const {nombre,apellidoP,idCurso} = useSelector(state => state.auth)
+   
+
     return (
         <div className="">
             <div style={{height: '300px'}}>
@@ -18,6 +21,7 @@ export const DashboardPage = () => {
                     </div>
                 </div>
             </div>
+           
             <div className="row gy-5 ">
                 
                     <div className="col-12 col-lg-8 ">
