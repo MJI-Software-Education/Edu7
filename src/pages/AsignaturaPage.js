@@ -52,11 +52,11 @@ export const AsignaturaPage = () => {
             <div className="container shadow-sm p-4 bg-white rounded">
                 {
                     asignatura.unidades.map((unidad, index)=>{
-                        const filterMateriales = materiales.filter(material => material.idUnidad === unidad._id)
-                        const filterPruebas = pruebas.filter(prueba => prueba.idUnidad === unidad._id)
+                        const filterMateriales = materiales?.filter(material => material.idUnidad === unidad._id)
+                        const filterPruebas = pruebas?.filter(prueba => prueba.idUnidad === unidad._id)
                         const filterJob = tareas?.filter(tarea => tarea.idUnidad === unidad._id && tarea.enunciados.length !== 0)
                         filterJob.map( t => {
-                            tAlumno = tareaAlumno.filter( tAlumno => tAlumno.idTarea === t.id && tAlumno.idUsuario === _id && tAlumno.idUnidad === t.idUnidad )
+                            tAlumno = tareaAlumno?.filter( tAlumno => tAlumno.idTarea === t.id && tAlumno.idUsuario === _id && tAlumno.idUnidad === t.idUnidad )
                         })
                         return(
                        <Unidad key={unidad._id} unidad={unidad} index={index+1} tareas={filterJob} materiales={filterMateriales} pruebas={filterPruebas} tareaAlumno={ tareaAlumno } idAsignatura={idAsignatura} /> 
