@@ -23,8 +23,8 @@ export const types = {
     cursoProfesorLoaded: '[cursoProfesor] cursoProfesor Cargados',
 
     asistenciaProfesorStartAddNew: '[asistenciaProfesor] Start Add New',
-    cursoAsistenciaAddNew: '[asistenciaProfesor] Add New',
-    cursoAsistenciapdated: '[asistenciaProfesor] asistenciaProfesor Actualizado',
-    cursoAsistenciaLoaded: '[asistenciaProfesor] asistenciaProfesor Cargados',
+    asistenciaCursoAddNew: '[asistenciaProfesor] Add New',
+    asistenciaCursoUpdated: '[asistenciaProfesor] asistenciaProfesor Actualizado',
+    asistenciaCursoLoaded: '[asistenciaProfesor] asistenciaProfesor Cargados',
 
 }

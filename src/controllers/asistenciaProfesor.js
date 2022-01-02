@@ -2,14 +2,12 @@ import { fetchConToken } from '../helpers/fetch';
 import { types } from '../types/types';
 
 
-export const asistenciaProfesorStartAddNew = ({ idUsuario, idCurso, idColegio, fecha, year, asistencia }) => {
+export const asistenciaProfesorStartAddNew = ( idUsuario, idCurso, fecha, year, asistencia ) => {
     return async ( dispatch ) => {
         try {
-            //Variables iguales al Server
-            const body = await fetchConToken('asistenciaProfesor', { idUsuario, idCurso, idColegio, fecha, year, asistencia }, 'POST');
-            
+            const body = await fetchConToken(`asistencia/${ idUsuario }`, { idCurso, fecha, year, asistencia }, 'POST');
             if ( body.ok ) {
-                dispatch( asistenciaProfesorAddNew( body.asistencia ) )
+                dispatch( asistenciaProfesorUpdated( body.asistencia ) )
             }
 
         } catch (error) {
@@ -18,8 +16,8 @@ export const asistenciaProfesorStartAddNew = ({ idUsuario, idCurso, idColegio, f
     }
 }
 
-const asistenciaProfesorAddNew = (asistencia) => ({
-    type: types.asistenciaProfesorAddNew,
+const asistenciaProfesorUpdated = (asistencia) => ({
+    type: types.asistenciaCursoUpdated,
     payload: asistencia,
 })
 
@@ -27,10 +25,8 @@ export const AsistenciaProfesorStartLoading = ( idCurso, fecha ) => {
     return async ( dispatch ) => {
         try {
             
-            const body = await fetchConToken('asistenciaProfesor',{ idCurso, fecha }, 'POST');
-            console.log(body);
-
-            dispatch( asistenciaProfesorLoaded( body.usuarios ) )
+            const body = await fetchConToken('asistencia/getAsistenciaAlumnos',{ idCurso, fecha }, 'POST');
+            dispatch( asistenciaProfesorLoaded( body.asistencia ) )
 
         } catch (error) {
             console.log(error)
@@ -38,7 +34,17 @@ export const AsistenciaProfesorStartLoading = ( idCurso, fecha ) => {
     }
 }
 
+export const dispatchCleanAsistencia = () => {
+    return async (dispatch) => {
+        dispatch(clearAsistencia());
+    }
+}
+
 const asistenciaProfesorLoaded = ( asistenciaProfesor ) => ({
-    type: types.asistenciaProfesorLoaded,
+    type: types.asistenciaCursoLoaded,
     payload: asistenciaProfesor
 })
+
+const clearAsistencia = () =>( {
+    type:'asistenciaProfesorLogout',
+});
