@@ -30,7 +30,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import TodayIcon from '@material-ui/icons/Today';
 import { HorarioPage } from '../pages/HorarioPage';
 import { Button } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { dispatchLogout } from '../controllers/auth';
 import { AsignaturaPage } from '../pages/AsignaturaPage';
 import { PruebaPage } from '../pages/PruebaPage';
@@ -138,11 +138,9 @@ export const DashBoardRoutes = (props) => {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-  const {url} = useSelector(state => state.stream);
-  const {idCurso} = useSelector(state => state.auth)
-  useEffect(() => {
-      dispatch(dispatchGetStream(idCurso.id))
-  }, [])
+  
+ 
+
     return (
         <Router>
         <div className={classes.root}>
@@ -161,11 +159,7 @@ export const DashBoardRoutes = (props) => {
           <Typography variant="h6" noWrap>
            
           </Typography>
-          {
-            url &&     <Button  color="secondary" variant="outlined"  className="boton deco-none" color="inherit"><a  className=" deco-none" href={`${url}`}>Entrar a reunion</a></Button> 
-            
-            
-          }
+          
           <Button onClick={onClick} color="secondary" variant="outlined"  className="boton " color="inherit">Logout</Button>
      
         </Toolbar>
