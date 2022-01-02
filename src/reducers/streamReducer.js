@@ -11,6 +11,10 @@ export const streamReducer = (state=initialState,action)=>{
                 checking:false,
                 url:action.payload
             }
+        case 'deleteStream':
+            return {
+                checking:false,
+            }
         case 'endCheck':
             return {
                 checking:false,
