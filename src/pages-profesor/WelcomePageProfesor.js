@@ -40,6 +40,7 @@ export const WelcomePageProfesor = () => {
 
     const deleteClick = ()=>{
         dispatch(dispatchDeleteStream(curso))
+        window.open(url.end, "Stream", "width=300, height=300")
     }
     if(checking){
         return (

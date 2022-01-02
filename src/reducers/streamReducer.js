@@ -19,6 +19,10 @@ export const streamReducer = (state=initialState,action)=>{
             return {
                 checking:false,
             }
+        case 'startCheck':
+            return {
+                checking:true,
+            }
     
         default:
             return state;

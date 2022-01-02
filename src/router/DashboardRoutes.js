@@ -37,7 +37,6 @@ import { PruebaPage } from '../pages/PruebaPage';
 import { TareasPage } from '../pages/TareasPage';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { AsistenciaPage } from '../pages/AsistenciaPage';
-import { dispatchGetStream } from '../controllers/stream';
 
 const drawerWidth = 200;
 

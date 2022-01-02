@@ -4,7 +4,6 @@ export const dispatchGetStream =(idCurso)=>{
     return async(dispatch) =>{
         dispatch(startCheck());
         const resp = await fetchConToken(`stream/getStream/`,{idCurso},'POST');
-        console.log(resp);
         if(resp.ok){
             dispatch(getStream(resp));
         }else{
@@ -16,9 +15,8 @@ export const dispatchNewStream =(idCurso)=>{
     return async(dispatch) =>{
         dispatch(startCheck());
         const resp = await fetchConToken(`stream/`,{idCurso},'POST');
-        console.log(resp);
         if(resp.ok){
-            window.open(resp.urlAdmin, "Diseño Web", "width=1000, height=900")
+            window.open(resp.urlAdmin, "Stream", "width=1000, height=900")
             
             dispatch(getStream(resp));
         }else{
@@ -30,7 +28,6 @@ export const dispatchDeleteStream =(idCurso)=>{
     return async(dispatch) =>{
         dispatch(startCheck());
         const resp = await fetchConToken(`stream/`,{idCurso},'DELETE');
-        console.log(resp);
         if(resp.ok){
             dispatch(deleteStream());
         }else{
