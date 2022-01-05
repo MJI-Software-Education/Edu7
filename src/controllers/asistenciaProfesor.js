@@ -7,6 +7,20 @@ export const asistenciaProfesorStartAddNew = ( idUsuario, idCurso, fecha, year, 
         try {
             const body = await fetchConToken(`asistencia/${ idUsuario }`, { idCurso, fecha, year, asistencia }, 'POST');
             if ( body.ok ) {
+                dispatch( asistenciaProfesorAddNew( body.asistencia ) )
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const asistenciaProfesorStartUpdate = ( idUsuario, idCurso, fecha, year, asistencia ) => {
+    return async ( dispatch ) => {
+        try {
+            const body = await fetchConToken(`asistencia/${ idUsuario }`, { idCurso, fecha, year, asistencia }, 'POST');
+            if ( body.ok ) {
                 dispatch( asistenciaProfesorUpdated( body.asistencia ) )
             }
 
@@ -15,6 +29,11 @@ export const asistenciaProfesorStartAddNew = ( idUsuario, idCurso, fecha, year, 
         }
     }
 }
+
+const asistenciaProfesorAddNew = (asistencia) => ({
+    type: types.asistenciaCursoAddNew,
+    payload: asistencia,
+})
 
 const asistenciaProfesorUpdated = (asistencia) => ({
     type: types.asistenciaCursoUpdated,

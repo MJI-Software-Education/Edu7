@@ -7,6 +7,15 @@ const initialState = {
 export const asistenciaProfesorReducer = (state = initialState, action) => {
     switch (action.type) {
 
+        case types.asistenciaCursoAddNew:
+            return {
+                ...state,
+                asistenciaProfesor: [
+                        ...state.asistenciaProfesor,
+                        action.payload
+                    ]
+            }
+
         case types.asistenciaCursoUpdated:
             return {
                 ...state,

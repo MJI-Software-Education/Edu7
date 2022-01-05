@@ -44,7 +44,7 @@ export const AsistenciaPageProfesor = () => {
 
     useEffect(() => {
         dispatch(dispatchCursoProfesorCleanAlumnos())
-    }, [dispatch])
+    }, [dispatch, fecha])
 
     for (const curso of courses) {
         if(!map.has(curso.idCurso.curso)){
@@ -85,14 +85,6 @@ export const AsistenciaPageProfesor = () => {
         }
     }
 
-    const rows = [];
-
-    let verificar = 0;
-
-    // const handleStartDateChange = (e) => {
-    //     console.log(e);
-    //     setfecha(e);
-    // }
     return (
         <div>
             <h1>Asistencia</h1>

@@ -1,7 +1,7 @@
 import { TableCell } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { asistenciaProfesorStartAddNew } from '../controllers/asistenciaProfesor';
+import { asistenciaProfesorStartAddNew, asistenciaProfesorStartUpdate } from '../controllers/asistenciaProfesor';
 import '../styles/opacityButton.css';
 
 export const CellAsistencia = ({ a, fecha, letra }) => {
@@ -17,7 +17,13 @@ export const CellAsistencia = ({ a, fecha, letra }) => {
     const handleAsistencia = ( e ) => {
         document.getElementById(e.target.id).setAttribute("disabled",true);
         cleanOpacityButton();
-        dispatch( asistenciaProfesorStartAddNew( a._id, letra, fecha.toISOString(), fecha.getFullYear() , e.target.value ) )
+
+        const newAsist = asistenciaProfesor?.find( element => element.idUsuario === a._id );
+
+        ( newAsist?.idUsuario === a._id ) 
+            ? dispatch( asistenciaProfesorStartUpdate( a._id, letra, fecha.toISOString(), fecha.getFullYear() , e.target.value ) )
+            : dispatch( asistenciaProfesorStartAddNew( a._id, letra, fecha.toISOString(), fecha.getFullYear() , e.target.value ) )
+
         setTimeout(() => {
             document.getElementById(e.target.id).removeAttribute("disabled");
         }, 1500);
@@ -25,7 +31,7 @@ export const CellAsistencia = ({ a, fecha, letra }) => {
 
     
     const cleanOpacityButton = () => {
-        document.getElementById(oldAsistencia[0]).setAttribute("class",oldAsistencia[1]);
+        document.getElementById(oldAsistencia[0])?.setAttribute("class",oldAsistencia[1]);
     }
 
     const opacityButton = () => {
@@ -40,7 +46,7 @@ export const CellAsistencia = ({ a, fecha, letra }) => {
                 break;
             case "Ausente":
                 document.getElementById(`${a._id}/a`).setAttribute("class","btn btn-danger opacity");
-                oldAsistencia =[
+                oldAsistencia = [
                     `${a._id}/a`,
                     'btn btn-danger'
                 ]
