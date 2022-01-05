@@ -39,13 +39,13 @@ export const LoginPage = () => {
     const [colegio, setColegio] = useState('');
   
     const handleChange = (event) => {
-        setColegio(event.target.value);
+        setColegio(event.target.value); 
     };
     return (
         <div className="contenido">
             <div className="row-2">
-                <div className="imagen"> 
-                    <img alt="imagen de portada" src="https://static.vecteezy.com/system/resources/previews/002/072/005/non_2x/modern-gradient-purple-blue-background-free-vector.jpg" />
+                <div className="imagen" style={{backgroundColor:'#4D4AA0'}}> 
+                    <img alt="imagen de portada" style={{width:'50vw'}} src={`../assets/edu7.png`} />
                 </div>
                 <div className="center">
                     <form onSubmit={onSubmit}>

@@ -24,7 +24,7 @@ export const AppRouter = () => {
     if(checking){
         return (
             <div className="loading">
-                <h1>Edu7</h1>
+                <img  style={{width:'200px'}}   alt="Logo de edu7" src={`../assets/logopurpuraedu7.png`} />
             </div>
         );
     }

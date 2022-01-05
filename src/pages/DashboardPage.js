@@ -16,7 +16,9 @@ export const DashboardPage = () => {
     
     if(checking){
         return (
-            <h1>Cargando...</h1>
+            <div className="loading">
+                <img  style={{width:'200px'}}   alt="Logo de edu7" src={`../assets/logopurpuraedu7.png`} />
+            </div>
         )
     }
     return (
@@ -51,7 +53,7 @@ export const DashboardPage = () => {
             }
             
            
-            <div className="row gy-5 ">
+            {/* <div className="row gy-5 ">
                 
                     <div className="col-12 col-lg-8 ">
                         <div className="row gy-5">
@@ -91,7 +93,7 @@ export const DashboardPage = () => {
                                 </div>
                             </div>   
                     </div> 
-            </div>
+            </div> */}
         </div>
     )
 }

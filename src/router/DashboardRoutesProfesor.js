@@ -99,7 +99,8 @@ export const DashBoardRoutesProfesor = (props) => {
 
   const drawer = (
     <div className='centrar'>
-      <div className="edu7">Edu7</div>
+      <div className="edu7" >
+        <img  className="edu7" alt="Logo de edu7" src={`../assets/edu7logo.png`} /></div>
       <div>
         <Link className="li" to="/">
           <ListItem button key={'Dashboard'}>

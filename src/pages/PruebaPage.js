@@ -60,7 +60,9 @@ export const PruebaPage = () => {
   }
   if(checking){
       return (
-          <h2>Cargando...</h2>
+        <div className="loading">
+        <img  style={{width:'200px'}}   alt="Logo de edu7" src={`../../../assets/logopurpuraedu7.png`} />
+    </div>
       )
   }
     return (

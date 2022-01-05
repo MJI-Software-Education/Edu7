@@ -44,7 +44,9 @@ export const WelcomePageProfesor = () => {
     }
     if(checking){
         return (
-            <h1>Cargando...</h1>
+            <div className="loading">
+                <img  style={{width:'200px'}}   alt="Logo de edu7" src={`../assets/logopurpuraedu7.png`} />
+            </div>
         )
     }
 

@@ -109,7 +109,8 @@ transition-duration: 0.3s;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
+
 }
 .btn-asistencia{
   border-radius: 5px;
@@ -188,6 +189,11 @@ transition-duration: 0.3s;
 .red{
   color: #D72329;
   cursor: pointer;
+}
+.edu7{
+  width:100% ;
+  height: 70px;
+  
 }
 .pb{
   margin-bottom: 5px;

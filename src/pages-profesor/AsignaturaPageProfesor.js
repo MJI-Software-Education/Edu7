@@ -29,7 +29,7 @@ export const AsignaturaPageProfesor = () => {
     if(checking){
         return (
             <div className="loading">
-                <h1>Cargando...</h1>
+                <img  style={{width:'200px'}}   alt="Logo de edu7" src={`../../../assets/logopurpuraedu7.png`} />
             </div>
         );
     }
